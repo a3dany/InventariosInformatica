@@ -34,7 +34,7 @@
 					
 						<th><g:message code="cambioEstado.responsable.label" default="Responsable" /></th>
 					
-						<g:sortableColumn property="fechaHora" title="${message(code: 'cambioEstado.fechaHora.label', default: 'Fecha Hora')}" />
+						<g:sortableColumn property="fechaRegistro" title="${message(code: 'cambioEstado.fechaRegistro.label', default: 'Fecha Registro')}" />
 					
 					</tr>
 				</thead>
@@ -52,7 +52,7 @@
 					
 						<td>${fieldValue(bean: cambioEstadoInstance, field: "responsable")}</td>
 					
-						<td>${fieldValue(bean: cambioEstadoInstance, field: "fechaHora")}</td>
+						<td>${fieldValue(bean: cambioEstadoInstance, field: "fechaRegistro")}</td>
 					
 					</tr>
 				</g:each>

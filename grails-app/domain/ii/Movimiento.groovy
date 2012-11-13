@@ -9,14 +9,14 @@ class Movimiento {
     Ambiente destino
     String descripcion
     Usuario responsable
-    LocalDateTime fechaHora
+    LocalDateTime fechaRegistro
 
     static constraints = {
         item()
         origen()
         destino()
         descripcion(maxSize: 999999)
-        responsable()
-        fechaHora()
+        responsable(nullable: true)
+        fechaRegistro(nullable: true)
     }
 }

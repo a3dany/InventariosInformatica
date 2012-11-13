@@ -41,11 +41,20 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${usuarioInstance?.nombre}">
+				<g:if test="${usuarioInstance?.nombres}">
 				<li class="fieldcontain">
-					<span id="nombre-label" class="property-label"><g:message code="usuario.nombre.label" default="Nombre" /></span>
+					<span id="nombres-label" class="property-label"><g:message code="usuario.nombres.label" default="Nombres" /></span>
 					
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${usuarioInstance}" field="nombre"/></span>
+						<span class="property-value" aria-labelledby="nombres-label"><g:fieldValue bean="${usuarioInstance}" field="nombres"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${usuarioInstance?.apellidos}">
+				<li class="fieldcontain">
+					<span id="apellidos-label" class="property-label"><g:message code="usuario.apellidos.label" default="Apellidos" /></span>
+					
+						<span class="property-value" aria-labelledby="apellidos-label"><g:fieldValue bean="${usuarioInstance}" field="apellidos"/></span>
 					
 				</li>
 				</g:if>
@@ -55,6 +64,15 @@
 					<span id="cargo-label" class="property-label"><g:message code="usuario.cargo.label" default="Cargo" /></span>
 					
 						<span class="property-value" aria-labelledby="cargo-label"><g:fieldValue bean="${usuarioInstance}" field="cargo"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${usuarioInstance?.ci}">
+				<li class="fieldcontain">
+					<span id="ci-label" class="property-label"><g:message code="usuario.ci.label" default="Ci" /></span>
+					
+						<span class="property-value" aria-labelledby="ci-label"><g:fieldValue bean="${usuarioInstance}" field="ci"/></span>
 					
 				</li>
 				</g:if>

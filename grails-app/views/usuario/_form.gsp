@@ -18,12 +18,20 @@
 	<g:textField name="password" required="" value="${usuarioInstance?.password}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'nombre', 'error')} required">
-	<label for="nombre">
-		<g:message code="usuario.nombre.label" default="Nombre" />
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'nombres', 'error')} required">
+	<label for="nombres">
+		<g:message code="usuario.nombres.label" default="Nombres" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="nombre" required="" value="${usuarioInstance?.nombre}"/>
+	<g:textField name="nombres" required="" value="${usuarioInstance?.nombres}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'apellidos', 'error')} required">
+	<label for="apellidos">
+		<g:message code="usuario.apellidos.label" default="Apellidos" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="apellidos" required="" value="${usuarioInstance?.apellidos}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'cargo', 'error')} ">
@@ -32,6 +40,14 @@
 		
 	</label>
 	<g:select name="cargo" from="${usuarioInstance.constraints.cargo.inList}" value="${usuarioInstance?.cargo}" valueMessagePrefix="usuario.cargo" noSelection="['': '']"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'ci', 'error')} ">
+	<label for="ci">
+		<g:message code="usuario.ci.label" default="Ci" />
+		
+	</label>
+	<g:textField name="ci" value="${usuarioInstance?.ci}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'accountExpired', 'error')} ">
@@ -65,5 +81,4 @@
 	</label>
 	<g:checkBox name="passwordExpired" value="${usuarioInstance?.passwordExpired}" />
 </div>
-
 

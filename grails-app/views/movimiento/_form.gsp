@@ -34,19 +34,19 @@
 	<g:textArea name="descripcion" cols="40" rows="5" maxlength="999999" value="${movimientoInstance?.descripcion}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: movimientoInstance, field: 'responsable', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: movimientoInstance, field: 'responsable', 'error')} ">
 	<label for="responsable">
 		<g:message code="movimiento.responsable.label" default="Responsable" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:select id="responsable" name="responsable.id" from="${ii.Usuario.list()}" optionKey="id" required="" value="${movimientoInstance?.responsable?.id}" class="many-to-one"/>
+	<g:select id="responsable" name="responsable.id" from="${ii.Usuario.list()}" optionKey="id" value="${movimientoInstance?.responsable?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: movimientoInstance, field: 'fechaHora', 'error')} required">
-	<label for="fechaHora">
-		<g:message code="movimiento.fechaHora.label" default="Fecha Hora" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: movimientoInstance, field: 'fechaRegistro', 'error')} ">
+	<label for="fechaRegistro">
+		<g:message code="movimiento.fechaRegistro.label" default="Fecha Registro" />
+		
 	</label>
-	<joda:dateTimePicker name="fechaHora" value="${movimientoInstance?.fechaHora}" ></joda:dateTimePicker>
+	<joda:dateTimePicker name="fechaRegistro" value="${movimientoInstance?.fechaRegistro}" default="none" noSelection="['': '']"></joda:dateTimePicker>
 </div>
 

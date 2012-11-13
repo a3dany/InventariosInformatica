@@ -5,24 +5,35 @@ import org.joda.time.*
 class Prestamo {
 
     Activo item
-    String solicitante
-    String ciSolicitante
-    String razon
-    LocalDateTime inicioPrestamo
-    LocalDateTime finPrestamo
+    String detalleItem
+    Usuario solicitante
+    String motivo
     Ambiente ambienteDondeEstara
+    LocalDateTime fechaInicio
+    LocalDateTime fechaFin
+    LocalDateTime fechaEntrega
+    LocalDateTime fechaDevolucion
+    String observacionDevolucion
+
+    // Login
     Usuario responsable
-    LocalDateTime fecha
+    LocalDateTime fechaRegistro
 
     static constraints = {
-        item()
-        solicitante(blank: false)
-        ciSolicitante(blank: false)
-        razon(blank: true)
-        inicioPrestamo()
-        finPrestamo()
+        item(nullable: false)
+        detalleItem(blank: true, maxSize: 999999)
+        solicitante()
+        motivo(blank: true, maxSize: 999999)
         ambienteDondeEstara(nullable: true)
-        responsable()
-        fecha()
+
+        fechaInicio(nullable: true)
+        fechaFin(nullable: true)
+        fechaEntrega(nullable: true)
+        fechaDevolucion(nullable: true)
+        observacionDevolucion(blank: true, maxSize: 999999)
+
+        responsable(nullable: true)
+        fechaRegistro(nullable: true)
     }
+
 }

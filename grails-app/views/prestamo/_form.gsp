@@ -10,44 +10,28 @@
 	<g:select id="item" name="item.id" from="${ii.Activo.list()}" optionKey="id" required="" value="${prestamoInstance?.item?.id}" class="many-to-one"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'detalleItem', 'error')} ">
+	<label for="detalleItem">
+		<g:message code="prestamo.detalleItem.label" default="Detalle Item" />
+		
+	</label>
+	<g:textArea name="detalleItem" cols="40" rows="5" maxlength="999999" value="${prestamoInstance?.detalleItem}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'solicitante', 'error')} required">
 	<label for="solicitante">
 		<g:message code="prestamo.solicitante.label" default="Solicitante" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="solicitante" required="" value="${prestamoInstance?.solicitante}"/>
+	<g:select id="solicitante" name="solicitante.id" from="${ii.Usuario.list()}" optionKey="id" required="" value="${prestamoInstance?.solicitante?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'ciSolicitante', 'error')} required">
-	<label for="ciSolicitante">
-		<g:message code="prestamo.ciSolicitante.label" default="Ci Solicitante" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'motivo', 'error')} ">
+	<label for="motivo">
+		<g:message code="prestamo.motivo.label" default="Motivo" />
+		
 	</label>
-	<g:textField name="ciSolicitante" required="" value="${prestamoInstance?.ciSolicitante}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'razon', 'error')} required">
-	<label for="razon">
-		<g:message code="prestamo.razon.label" default="Razon" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="razon" required="" value="${prestamoInstance?.razon}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'inicioPrestamo', 'error')} required">
-	<label for="inicioPrestamo">
-		<g:message code="prestamo.inicioPrestamo.label" default="Inicio Prestamo" />
-		<span class="required-indicator">*</span>
-	</label>
-	<joda:dateTimePicker name="inicioPrestamo" value="${prestamoInstance?.inicioPrestamo}" ></joda:dateTimePicker>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'finPrestamo', 'error')} required">
-	<label for="finPrestamo">
-		<g:message code="prestamo.finPrestamo.label" default="Fin Prestamo" />
-		<span class="required-indicator">*</span>
-	</label>
-	<joda:dateTimePicker name="finPrestamo" value="${prestamoInstance?.finPrestamo}" ></joda:dateTimePicker>
+	<g:textArea name="motivo" cols="40" rows="5" maxlength="999999" value="${prestamoInstance?.motivo}"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'ambienteDondeEstara', 'error')} ">
@@ -58,19 +42,42 @@
 	<g:select id="ambienteDondeEstara" name="ambienteDondeEstara.id" from="${ii.Ambiente.list()}" optionKey="id" value="${prestamoInstance?.ambienteDondeEstara?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'responsable', 'error')} required">
-	<label for="responsable">
-		<g:message code="prestamo.responsable.label" default="Responsable" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fechaInicio', 'error')} ">
+	<label for="fechaInicio">
+		<g:message code="prestamo.fechaInicio.label" default="Fecha Inicio" />
+		
 	</label>
-	<g:select id="responsable" name="responsable.id" from="${ii.Usuario.list()}" optionKey="id" required="" value="${prestamoInstance?.responsable?.id}" class="many-to-one"/>
+	<joda:dateTimePicker name="fechaInicio" value="${prestamoInstance?.fechaInicio}" default="none" noSelection="['': '']"></joda:dateTimePicker>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fecha', 'error')} required">
-	<label for="fecha">
-		<g:message code="prestamo.fecha.label" default="Fecha" />
-		<span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fechaFin', 'error')} ">
+	<label for="fechaFin">
+		<g:message code="prestamo.fechaFin.label" default="Fecha Fin" />
+		
 	</label>
-	<joda:dateTimePicker name="fecha" value="${prestamoInstance?.fecha}" ></joda:dateTimePicker>
+	<joda:dateTimePicker name="fechaFin" value="${prestamoInstance?.fechaFin}" default="none" noSelection="['': '']"></joda:dateTimePicker>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fechaEntrega', 'error')} ">
+	<label for="fechaEntrega">
+		<g:message code="prestamo.fechaEntrega.label" default="Fecha Entrega" />
+		
+	</label>
+	<joda:dateTimePicker name="fechaEntrega" value="${prestamoInstance?.fechaEntrega}" default="none" noSelection="['': '']"></joda:dateTimePicker>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fechaDevolucion', 'error')} ">
+	<label for="fechaDevolucion">
+		<g:message code="prestamo.fechaDevolucion.label" default="Fecha Devolucion" />
+
+	</label>
+	<joda:dateTimePicker name="fechaDevolucion" value="${prestamoInstance?.fechaDevolucion}" default="none" noSelection="['': '']"></joda:dateTimePicker>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'observacionDevolucion', 'error')} ">
+	<label for="observacionDevolucion">
+		<g:message code="prestamo.observacionDevolucion.label" default="Observacion Devolucion" />
+
+	</label>
+	<g:textArea name="observacionDevolucion" cols="40" rows="5" maxlength="999999" value="${prestamoInstance?.observacionDevolucion}"/>
+</div>

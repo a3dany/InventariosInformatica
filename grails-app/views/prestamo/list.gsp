@@ -16,7 +16,7 @@
 			</ul>
 		</div>
 		<div id="list-prestamo" class="content scaffold-list" role="main">
-			<h1><g:message code="prestamo.titulo" /></h1>
+			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -26,15 +26,15 @@
 					
 						<th><g:message code="prestamo.item.label" default="Item" /></th>
 					
-						<g:sortableColumn property="solicitante" title="${message(code: 'prestamo.solicitante.label', default: 'Solicitante')}" />
+						<g:sortableColumn property="detalleItem" title="${message(code: 'prestamo.detalleItem.label', default: 'Detalle Item')}" />
 					
-						<g:sortableColumn property="ciSolicitante" title="${message(code: 'prestamo.ciSolicitante.label', default: 'Ci Solicitante')}" />
+						<th><g:message code="prestamo.solicitante.label" default="Solicitante" /></th>
 					
-						<g:sortableColumn property="razon" title="${message(code: 'prestamo.razon.label', default: 'Razon')}" />
+						<g:sortableColumn property="motivo" title="${message(code: 'prestamo.motivo.label', default: 'Motivo')}" />
 					
-						<g:sortableColumn property="inicioPrestamo" title="${message(code: 'prestamo.inicioPrestamo.label', default: 'Inicio Prestamo')}" />
+						<th><g:message code="prestamo.ambienteDondeEstara.label" default="Ambiente Donde Estara" /></th>
 					
-						<g:sortableColumn property="finPrestamo" title="${message(code: 'prestamo.finPrestamo.label', default: 'Fin Prestamo')}" />
+						<g:sortableColumn property="fechaInicio" title="${message(code: 'prestamo.fechaInicio.label', default: 'Fecha Inicio')}" />
 					
 					</tr>
 				</thead>
@@ -44,15 +44,15 @@
 					
 						<td><g:link action="show" id="${prestamoInstance.id}">${fieldValue(bean: prestamoInstance, field: "item")}</g:link></td>
 					
+						<td>${fieldValue(bean: prestamoInstance, field: "detalleItem")}</td>
+					
 						<td>${fieldValue(bean: prestamoInstance, field: "solicitante")}</td>
 					
-						<td>${fieldValue(bean: prestamoInstance, field: "ciSolicitante")}</td>
+						<td>${fieldValue(bean: prestamoInstance, field: "motivo")}</td>
 					
-						<td>${fieldValue(bean: prestamoInstance, field: "razon")}</td>
+						<td>${fieldValue(bean: prestamoInstance, field: "ambienteDondeEstara")}</td>
 					
-						<td>${fieldValue(bean: prestamoInstance, field: "inicioPrestamo")}</td>
-					
-						<td>${fieldValue(bean: prestamoInstance, field: "finPrestamo")}</td>
+						<td>${fieldValue(bean: prestamoInstance, field: "fechaInicio")}</td>
 					
 					</tr>
 				</g:each>

@@ -1,6 +1,7 @@
 package ii
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.joda.time.LocalDateTime
 
 class PrestamoController {
 
@@ -21,6 +22,10 @@ class PrestamoController {
 
     def save() {
         def prestamoInstance = new Prestamo(params)
+
+        prestamoInstance.setResponsable(Usuario.findByUsername(sec.username()))
+        prestamoInstance.setFechaRegistro(LocalDateTime.now())
+
         if (!prestamoInstance.save(flush: true)) {
             render(view: "create", model: [prestamoInstance: prestamoInstance])
             return

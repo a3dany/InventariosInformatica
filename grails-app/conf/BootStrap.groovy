@@ -9,9 +9,9 @@ class BootStrap {
         def administradorRole = new Role(authority: 'ROLE_ADMINISTRADOR').save(flush: true)
         def tecnicoRole = new Role(authority: 'ROLE_TECNICO').save(flush: true)
 
-        Usuario u1 = new Usuario(username: "dalvarez", password: "dalvarez", enabled: true, nombre: "Daniel Alvarez", cargo: "Administrativo").save(flush: true)
-        Usuario u2 = new Usuario(username: "kvasquez", password: "kvasquez", nombre: "Katherine Vasquez", enabled: true, cargo: "Docente").save(flush: true)
-        Usuario u3 = new Usuario(username: "jperez", password: "jperez", enabled: true, nombre: "Juan Perez", cargo: "Docente").save(flush: true)
+        Usuario u1 = new Usuario(username: "dalvarez", password: "dalvarez", enabled: true, nombres: "Daniel", apellidos: "Alvarez", cargo: "Administrativo", ci: "6120049 LP").save(flush: true)
+        Usuario u2 = new Usuario(username: "kvasquez", password: "kvasquez", nombres: "Katherine", apellidos: "Vasquez", enabled: true, cargo: "Docente", ci: "6120087 LP").save(flush: true)
+        Usuario u3 = new Usuario(username: "jperez", password: "jperez", enabled: true, nombres: "Juan",apellidos: "Perez", cargo: "Docente", ci: "8755978 LP").save(flush: true)
 
         UserRole.create(u1, administradorRole, true)
         UserRole.create(u2, tecnicoRole, true)
@@ -75,6 +75,17 @@ class BootStrap {
         new EstadoActivo(nombre: "Estado 5 (Baja)", descripcion: "El activo es inutilizable.").save(flush: true)
 
         //***********************************************************
+        new Marca(nombre: "Samsung", descripcion: "").save(flush: true)
+        new Marca(nombre: "Sony", descripcion: "").save(flush: true)
+        new Marca(nombre: "Panasonic", descripcion: "").save(flush: true)
+        new Marca(nombre: "EPSON", descripcion: "").save(flush: true)
+        new Marca(nombre: "LG", descripcion: "").save(flush: true)
+        new Marca(nombre: "Acer", descripcion: "").save(flush: true)
+        new Marca(nombre: "HP", descripcion: "").save(flush: true)
+        new Marca(nombre: "HTC", descripcion: "").save(flush: true)
+        new Marca(nombre: "Maxtor", descripcion: "").save(flush: true)
+        new Marca(nombre: "Hitachi", descripcion: "").save(flush: true)
+        new Marca(nombre: "Otro", descripcion: "").save(flush: true)
 
         new Activo(serie: "123456", nombre: "HandyCam", descripcion: "Sony, modelo X123", tipo: tac1, estadoActual: ea1, ambienteActual: a1, fechaAlta: new LocalDateTime(), responsable: u1).save(flush: true)
     }

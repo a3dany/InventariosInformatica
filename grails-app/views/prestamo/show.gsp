@@ -32,47 +32,29 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${prestamoInstance?.detalleItem}">
+				<li class="fieldcontain">
+					<span id="detalleItem-label" class="property-label"><g:message code="prestamo.detalleItem.label" default="Detalle Item" /></span>
+					
+						<span class="property-value" aria-labelledby="detalleItem-label"><g:fieldValue bean="${prestamoInstance}" field="detalleItem"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${prestamoInstance?.solicitante}">
 				<li class="fieldcontain">
 					<span id="solicitante-label" class="property-label"><g:message code="prestamo.solicitante.label" default="Solicitante" /></span>
 					
-						<span class="property-value" aria-labelledby="solicitante-label"><g:fieldValue bean="${prestamoInstance}" field="solicitante"/></span>
+						<span class="property-value" aria-labelledby="solicitante-label"><g:link controller="usuario" action="show" id="${prestamoInstance?.solicitante?.id}">${prestamoInstance?.solicitante?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${prestamoInstance?.ciSolicitante}">
+				<g:if test="${prestamoInstance?.motivo}">
 				<li class="fieldcontain">
-					<span id="ciSolicitante-label" class="property-label"><g:message code="prestamo.ciSolicitante.label" default="Ci Solicitante" /></span>
+					<span id="motivo-label" class="property-label"><g:message code="prestamo.motivo.label" default="Motivo" /></span>
 					
-						<span class="property-value" aria-labelledby="ciSolicitante-label"><g:fieldValue bean="${prestamoInstance}" field="ciSolicitante"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${prestamoInstance?.razon}">
-				<li class="fieldcontain">
-					<span id="razon-label" class="property-label"><g:message code="prestamo.razon.label" default="Razon" /></span>
-					
-						<span class="property-value" aria-labelledby="razon-label"><g:fieldValue bean="${prestamoInstance}" field="razon"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${prestamoInstance?.inicioPrestamo}">
-				<li class="fieldcontain">
-					<span id="inicioPrestamo-label" class="property-label"><g:message code="prestamo.inicioPrestamo.label" default="Inicio Prestamo" /></span>
-					
-						<span class="property-value" aria-labelledby="inicioPrestamo-label"><g:fieldValue bean="${prestamoInstance}" field="inicioPrestamo"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${prestamoInstance?.finPrestamo}">
-				<li class="fieldcontain">
-					<span id="finPrestamo-label" class="property-label"><g:message code="prestamo.finPrestamo.label" default="Fin Prestamo" /></span>
-					
-						<span class="property-value" aria-labelledby="finPrestamo-label"><g:fieldValue bean="${prestamoInstance}" field="finPrestamo"/></span>
+						<span class="property-value" aria-labelledby="motivo-label"><g:fieldValue bean="${prestamoInstance}" field="motivo"/></span>
 					
 				</li>
 				</g:if>
@@ -86,6 +68,51 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${prestamoInstance?.fechaInicio}">
+				<li class="fieldcontain">
+					<span id="fechaInicio-label" class="property-label"><g:message code="prestamo.fechaInicio.label" default="Fecha Inicio" /></span>
+					
+						<span class="property-value" aria-labelledby="fechaInicio-label"><g:fieldValue bean="${prestamoInstance}" field="fechaInicio"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${prestamoInstance?.fechaFin}">
+				<li class="fieldcontain">
+					<span id="fechaFin-label" class="property-label"><g:message code="prestamo.fechaFin.label" default="Fecha Fin" /></span>
+					
+						<span class="property-value" aria-labelledby="fechaFin-label"><g:fieldValue bean="${prestamoInstance}" field="fechaFin"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${prestamoInstance?.fechaEntrega}">
+				<li class="fieldcontain">
+					<span id="fechaEntrega-label" class="property-label"><g:message code="prestamo.fechaEntrega.label" default="Fecha Entrega" /></span>
+					
+						<span class="property-value" aria-labelledby="fechaEntrega-label"><g:fieldValue bean="${prestamoInstance}" field="fechaEntrega"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${prestamoInstance?.fechaDevolucion}">
+				<li class="fieldcontain">
+					<span id="fechaDevolucion-label" class="property-label"><g:message code="prestamo.fechaDevolucion.label" default="Fecha Devolucion" /></span>
+					
+						<span class="property-value" aria-labelledby="fechaDevolucion-label"><g:fieldValue bean="${prestamoInstance}" field="fechaDevolucion"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${prestamoInstance?.observacionDevolucion}">
+				<li class="fieldcontain">
+					<span id="observacionDevolucion-label" class="property-label"><g:message code="prestamo.observacionDevolucion.label" default="Observacion Devolucion" /></span>
+					
+						<span class="property-value" aria-labelledby="observacionDevolucion-label"><g:fieldValue bean="${prestamoInstance}" field="observacionDevolucion"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${prestamoInstance?.responsable}">
 				<li class="fieldcontain">
 					<span id="responsable-label" class="property-label"><g:message code="prestamo.responsable.label" default="Responsable" /></span>
@@ -95,11 +122,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${prestamoInstance?.fecha}">
+				<g:if test="${prestamoInstance?.fechaRegistro}">
 				<li class="fieldcontain">
-					<span id="fecha-label" class="property-label"><g:message code="prestamo.fecha.label" default="Fecha" /></span>
+					<span id="fechaRegistro-label" class="property-label"><g:message code="prestamo.fechaRegistro.label" default="Fecha Registro" /></span>
 					
-						<span class="property-value" aria-labelledby="fecha-label"><g:fieldValue bean="${prestamoInstance}" field="fecha"/></span>
+						<span class="property-value" aria-labelledby="fechaRegistro-label"><g:fieldValue bean="${prestamoInstance}" field="fechaRegistro"/></span>
 					
 				</li>
 				</g:if>

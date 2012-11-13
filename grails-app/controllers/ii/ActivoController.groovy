@@ -1,6 +1,8 @@
 package ii
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.joda.time.LocalDateTime
+import grails.converters.JSON
 
 class ActivoController {
 
@@ -15,12 +17,20 @@ class ActivoController {
         [activoInstanceList: Activo.list(params), activoInstanceTotal: Activo.count()]
     }
 
+    def listMobile() {
+        render Activo.list() as JSON
+    }
+
     def create() {
         [activoInstance: new Activo(params)]
     }
 
     def save() {
         def activoInstance = new Activo(params)
+
+        activoInstance.setResponsable(Usuario.findByUsername(sec.username()))
+        activoInstance.setFechaAltaSistema(LocalDateTime.now())
+
         if (!activoInstance.save(flush: true)) {
             render(view: "create", model: [activoInstance: activoInstance])
             return

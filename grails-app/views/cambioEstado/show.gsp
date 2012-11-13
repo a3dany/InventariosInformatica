@@ -68,11 +68,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${cambioEstadoInstance?.fechaHora}">
+				<g:if test="${cambioEstadoInstance?.fechaRegistro}">
 				<li class="fieldcontain">
-					<span id="fechaHora-label" class="property-label"><g:message code="cambioEstado.fechaHora.label" default="Fecha Hora" /></span>
+					<span id="fechaRegistro-label" class="property-label"><g:message code="cambioEstado.fechaRegistro.label" default="Fecha Registro" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaHora-label"><g:fieldValue bean="${cambioEstadoInstance}" field="fechaHora"/></span>
+						<span class="property-value" aria-labelledby="fechaRegistro-label"><g:fieldValue bean="${cambioEstadoInstance}" field="fechaRegistro"/></span>
 					
 				</li>
 				</g:if>

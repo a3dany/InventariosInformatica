@@ -1,8 +1,6 @@
 package ii
 
 import org.springframework.dao.DataIntegrityViolationException
-import grails.converters.JSON
-import org.joda.time.LocalDateTime
 
 class CambioEstadoController {
 
@@ -15,10 +13,6 @@ class CambioEstadoController {
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [cambioEstadoInstanceList: CambioEstado.list(params), cambioEstadoInstanceTotal: CambioEstado.count()]
-    }
-
-    def listMobile() {
-        render CambioEstado.list() as JSON
     }
 
     def create() {
@@ -35,17 +29,6 @@ class CambioEstadoController {
         flash.message = message(code: 'default.created.message', args: [message(code: 'cambioEstado.label', default: 'CambioEstado'), cambioEstadoInstance.id])
         redirect(action: "show", id: cambioEstadoInstance.id)
     }
-
-    def saveMobile() {
-        def cambioEstadoInstance = new CambioEstado(params)
-        render("hoalsdjaksjdakl")
-
-        if (!cambioEstadoInstance.save(flush: true)) {
-            return true
-        }
-        return false
-    }
-
 
     def show(Long id) {
         def cambioEstadoInstance = CambioEstado.get(id)

@@ -21,9 +21,6 @@ class UsuarioController {
 
     def save() {
         def usuarioInstance = new Usuario(params)
-        //def role = new UserRole(user: usuarioInstance, role: Role.get(params.role.authority))
-        //role.save(flush: true)
-
         if (!usuarioInstance.save(flush: true)) {
             render(view: "create", model: [usuarioInstance: usuarioInstance])
             return

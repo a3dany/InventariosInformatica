@@ -26,7 +26,7 @@
                 <g:link controller="login" action="auth">Ingresar</g:link>
             </sec:ifNotLoggedIn>
             <sec:ifLoggedIn>
-                ${Usuario.findByUsername(sec.username()).nombre} (<g:link controller="logout">Salir</g:link>)
+                ${Usuario.findByUsername(sec.username()).nombres} ${Usuario.findByUsername(sec.username()).apellidos} (<g:link controller="logout">Salir</g:link>)
             </sec:ifLoggedIn>
             </span>
         </div>

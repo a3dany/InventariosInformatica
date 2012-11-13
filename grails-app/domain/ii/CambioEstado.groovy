@@ -9,14 +9,14 @@ class CambioEstado {
     EstadoActivo actual
     String descripcion
     Usuario responsable
-    LocalDateTime fechaHora
+    LocalDateTime fechaRegistro
 
     static constraints = {
         item()
         anterior()
         actual()
         descripcion(maxSize: 999999)
-        responsable()
-        fechaHora()
+        responsable(nullable: true)
+        fechaRegistro(nullable: true)
     }
 }

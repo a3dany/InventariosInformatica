@@ -2,15 +2,19 @@ package ii
 
 class Usuario extends User {
 
-    String nombre
+    String nombres
+    String apellidos
     String cargo
+    String ci
 
     static constraints = {
-        nombre(blank: false, minSize: 3)
+        nombres(blank: false, minSize: 2)
+        apellidos(blank: false, minSize: 2)
         cargo(inList: ["Administrativo", "Portero", "Docente", "Estudiante"])
+        ci(unique: true)
     }
 
     String toString() {
-        "$nombre ($cargo)"
+        "$nombres $apellidos ($cargo)"
     }
 }

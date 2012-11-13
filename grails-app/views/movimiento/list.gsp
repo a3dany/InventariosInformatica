@@ -34,7 +34,7 @@
 					
 						<th><g:message code="movimiento.responsable.label" default="Responsable" /></th>
 					
-						<g:sortableColumn property="fechaHora" title="${message(code: 'movimiento.fechaHora.label', default: 'Fecha Hora')}" />
+						<g:sortableColumn property="fechaRegistro" title="${message(code: 'movimiento.fechaRegistro.label', default: 'Fecha Registro')}" />
 					
 					</tr>
 				</thead>
@@ -52,7 +52,7 @@
 					
 						<td>${fieldValue(bean: movimientoInstance, field: "responsable")}</td>
 					
-						<td>${fieldValue(bean: movimientoInstance, field: "fechaHora")}</td>
+						<td>${fieldValue(bean: movimientoInstance, field: "fechaRegistro")}</td>
 					
 					</tr>
 				</g:each>
