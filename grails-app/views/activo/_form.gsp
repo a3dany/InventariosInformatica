@@ -1,6 +1,4 @@
-<%@ page import="ii.Activo" %>
-
-
+<%@ page import="org.joda.time.LocalDateTime; ii.Activo" %>
 
 <div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'serie', 'error')} required">
 	<label for="serie">
@@ -8,6 +6,14 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="serie" required="" value="${activoInstance?.serie}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'tipo', 'error')} required">
+	<label for="tipo">
+		<g:message code="activo.tipo.label" default="Tipo" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="tipo" name="tipo.id" from="${ii.TipoActivo.list()}" optionKey="id" required="" value="${activoInstance?.tipo?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'nombre', 'error')} ">
@@ -24,14 +30,6 @@
 		
 	</label>
 	<g:textArea name="descripcion" cols="40" rows="5" maxlength="999999" value="${activoInstance?.descripcion}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'tipo', 'error')} required">
-	<label for="tipo">
-		<g:message code="activo.tipo.label" default="Tipo" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="tipo" name="tipo.id" from="${ii.TipoActivo.list()}" optionKey="id" required="" value="${activoInstance?.tipo?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'marca', 'error')} ">
@@ -66,39 +64,50 @@
 	<g:select id="responsable" name="responsable.id" from="${ii.Usuario.list()}" optionKey="id" value="${activoInstance?.responsable?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'perteneceActivo', 'error')} ">
+<div id="selector1" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'perteneceActivo', 'error')} ">
 	<label for="perteneceActivo">
-		<g:message code="activo.perteneceActivo.label" default="Pertenece Activo" />
+		<g:message code="activo.perteneceAUnActivo" />
 		
 	</label>
 	<g:checkBox name="perteneceActivo" value="${activoInstance?.perteneceActivo}" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'activoAlQuePertenece', 'error')} ">
+<div id="control1" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'activoAlQuePertenece', 'error')} ">
 	<label for="activoAlQuePertenece">
-		<g:message code="activo.activoAlQuePertenece.label" default="Activo Al Que Pertenece" />
-		
+		<g:message code="activo.activoAlQuePerteneces" />
 	</label>
 	<g:select id="activoAlQuePertenece" name="activoAlQuePertenece.id" from="${ii.Activo.list()}" optionKey="id" value="${activoInstance?.activoAlQuePertenece?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'esAsignadoAmbiente', 'error')} ">
+<div id="selector2" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'esAsignadoAmbiente', 'error')} ">
 	<label for="esAsignadoAmbiente">
-		<g:message code="activo.esAsignadoAmbiente.label" default="Es Asignado Ambiente" />
+		<g:message code="activo.asignarAUnAmbiente" />
 		
 	</label>
 	<g:checkBox name="esAsignadoAmbiente" value="${activoInstance?.esAsignadoAmbiente}" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'ambienteActual', 'error')} ">
+<div id="control2" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'ambienteActual', 'error')} ">
 	<label for="ambienteActual">
-		<g:message code="activo.ambienteActual.label" default="Ambiente Actual" />
+		<g:message code="activo.ambienteActual" />
 		
 	</label>
 	<g:select id="ambienteActual" name="ambienteActual.id" from="${ii.Ambiente.list()}" optionKey="id" value="${activoInstance?.ambienteActual?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'costo', 'error')} required">
+
+
+
+<div id="controlEsComprado" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'esComprado', 'error')} ">
+    <label for="esComprado">
+        <g:message code="activo.seTieneDatosCompra" />
+
+    </label>
+    <g:checkBox name="esComprado" value="${activoInstance?.esComprado}" />
+</div>
+
+
+<div id="controlCompra1" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'costo', 'error')} required">
 	<label for="costo">
 		<g:message code="activo.costo.label" default="Costo" />
 		<span class="required-indicator">*</span>
@@ -106,7 +115,7 @@
 	<g:field type="number" name="costo" required="" value="${fieldValue(bean: activoInstance, field: 'costo')}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'diasGarantia', 'error')} required">
+<div id="controlCompra2" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'diasGarantia', 'error')} required">
 	<label for="diasGarantia">
 		<g:message code="activo.diasGarantia.label" default="Dias Garantia" />
 		<span class="required-indicator">*</span>
@@ -114,7 +123,7 @@
 	<g:field type="number" name="diasGarantia" required="" value="${fieldValue(bean: activoInstance, field: 'diasGarantia')}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'factura', 'error')} ">
+<div id="controlCompra3" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'factura', 'error')} ">
 	<label for="factura">
 		<g:message code="activo.factura.label" default="Factura" />
 		
@@ -122,7 +131,7 @@
 	<g:textField name="factura" maxlength="50" value="${activoInstance?.factura}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'proveedor', 'error')} ">
+<div id="controlCompra4" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'proveedor', 'error')} ">
 	<label for="proveedor">
 		<g:message code="activo.proveedor.label" default="Proveedor" />
 		
@@ -130,51 +139,22 @@
 	<g:textField name="proveedor" maxlength="50" value="${activoInstance?.proveedor}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'esPedido', 'error')} ">
-	<label for="esPedido">
-		<g:message code="activo.esPedido.label" default="Es Pedido" />
-		
-	</label>
-	<g:checkBox name="esPedido" value="${activoInstance?.esPedido}" />
+
+<div id="controlCompra5" class="fieldcontain ${hasErrors(bean: activoInstance, field: 'fechaCompra', 'error')} ">
+    <label for="fechaCompra">
+        <g:message code="activo.fechaCompra.label" default="Fecha Compra" />
+
+    </label>
+    <joda:dateTimePicker name="fechaCompra" value="${activoInstance?.fechaCompra}" default="${LocalDateTime.now()}" noSelection="['': '']"></joda:dateTimePicker>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'esComprado', 'error')} ">
-	<label for="esComprado">
-		<g:message code="activo.esComprado.label" default="Es Comprado" />
-		
-	</label>
-	<g:checkBox name="esComprado" value="${activoInstance?.esComprado}" />
-</div>
 
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'esActivo', 'error')} ">
-	<label for="esActivo">
-		<g:message code="activo.esActivo.label" default="Es Activo" />
-		
-	</label>
-	<g:checkBox name="esActivo" value="${activoInstance?.esActivo}" />
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'fechaPedido', 'error')} ">
-	<label for="fechaPedido">
-		<g:message code="activo.fechaPedido.label" default="Fecha Pedido" />
-		
-	</label>
-	<joda:dateTimePicker name="fechaPedido" value="${activoInstance?.fechaPedido}" default="none" noSelection="['': '']"></joda:dateTimePicker>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'fechaCompra', 'error')} ">
-	<label for="fechaCompra">
-		<g:message code="activo.fechaCompra.label" default="Fecha Compra" />
-		
-	</label>
-	<joda:dateTimePicker name="fechaCompra" value="${activoInstance?.fechaCompra}" default="none" noSelection="['': '']"></joda:dateTimePicker>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: activoInstance, field: 'fechaActivo', 'error')} ">
 	<label for="fechaActivo">
 		<g:message code="activo.fechaActivo.label" default="Fecha Activo" />
 		
 	</label>
-	<joda:dateTimePicker name="fechaActivo" value="${activoInstance?.fechaActivo}" default="none" noSelection="['': '']"></joda:dateTimePicker>
+	<joda:dateTimePicker name="fechaActivo" value="${activoInstance?.fechaActivo}" default="${LocalDateTime.now()}" noSelection="['': '']"></joda:dateTimePicker>
 </div>
 

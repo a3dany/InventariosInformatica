@@ -628,3 +628,12 @@ a.skip {
     font-style: normal;
 
 }
+
+
+/***********************************************************************/
+.buttons .esactivo {
+    background-position: 0.7em center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-image: url(../images/skin/ic_action_esactivo.png);
+}

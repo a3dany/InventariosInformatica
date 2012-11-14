@@ -26,6 +26,8 @@ class PrestamoController {
         prestamoInstance.setResponsable(Usuario.findByUsername(sec.username()))
         prestamoInstance.setFechaRegistro(LocalDateTime.now())
 
+        prestamoInstance.setObservacionDevolucion("")
+
         if (!prestamoInstance.save(flush: true)) {
             render(view: "create", model: [prestamoInstance: prestamoInstance])
             return

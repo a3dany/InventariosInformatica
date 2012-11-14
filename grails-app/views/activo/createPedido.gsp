@@ -4,7 +4,7 @@
 <head>
     <meta name="layout" content="main">
     <g:set var="entityName" value="${message(code: 'activo.activo')}"/>
-    <title><g:message code="activo.nuevoactivo"/></title>
+    <title><g:message code="activo.nuevopedido"/></title>
 </head>
 
 <body>
@@ -14,12 +14,12 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="list" action="list"><g:message code="activo.activos"/></g:link></li>
+        <li><g:link class="list" action="listPedidos"><g:message code="activo.pedidos"/></g:link></li>
     </ul>
 </div>
 
 <div id="create-activo" class="content scaffold-create" role="main">
-    <h1><g:message code="activo.nuevoactivo"/></h1>
+    <h1><g:message code="activo.nuevopedido"/></h1>
 
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
@@ -33,9 +33,9 @@
         </ul>
     </g:hasErrors>
 
-    <g:form action="save">
+    <g:form action="savePedido">
         <fieldset class="form">
-            <g:render template="form"/>
+            <g:render template="formPedido"/>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save"

@@ -4,7 +4,7 @@
 <head>
     <meta name="layout" content="main">
     <g:set var="entityName" value="${message(code: 'activo.label', default: 'Activo')}"/>
-    <title><g:message code="activo.activo"/></title>
+    <title><g:message code="activo.pedido"/></title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 </div>
 
 <div id="show-activo" class="content scaffold-show" role="main">
-<h1><g:message code="activo.activo"/></h1>
+<h1><g:message code="activo.pedido"/></h1>
 <g:if test="${flash.message}">
     <div class="message" role="status">${flash.message}</div>
 </g:if>
@@ -287,19 +287,15 @@
 
     </li>
 </g:if>
-<li class="fieldcontain">
-    <p align="center">
-        <qrcode:image text="${activoInstance?.serie}"/>
-    </p>
-</li>
 
 </ol>
 <g:form>
     <fieldset class="buttons">
         <g:hiddenField name="id" value="${activoInstance?.id}"/>
-        <g:link class="edit" action="edit" id="${activoInstance?.id}"><g:message code="default.button.edit.label"
+        <g:link class="edit" action="editPedido" id="${activoInstance?.id}"><g:message code="default.button.edit.label"
                                                                                  default="Edit"/></g:link>
-        <g:actionSubmit class="delete" action="delete"
+        <g:link class="esactivo" action="edit" id="${activoInstance?.id}"><g:message code="activo.convertirActivo"/></g:link>
+        <g:actionSubmit class="delete" action="deletePedido"
                         value="${message(code: 'default.button.delete.label', default: 'Delete')}"
                         onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
     </fieldset>

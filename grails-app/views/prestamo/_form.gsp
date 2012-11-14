@@ -1,4 +1,4 @@
-<%@ page import="ii.Prestamo" %>
+<%@ page import="org.joda.time.LocalDateTime; ii.Prestamo" %>
 
 
 
@@ -12,7 +12,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'detalleItem', 'error')} ">
 	<label for="detalleItem">
-		<g:message code="prestamo.detalleItem.label" default="Detalle Item" />
+		<g:message code="prestamo.detallePrestamo" />
 		
 	</label>
 	<g:textArea name="detalleItem" cols="40" rows="5" maxlength="999999" value="${prestamoInstance?.detalleItem}"/>
@@ -47,7 +47,7 @@
 		<g:message code="prestamo.fechaInicio.label" default="Fecha Inicio" />
 		
 	</label>
-	<joda:dateTimePicker name="fechaInicio" value="${prestamoInstance?.fechaInicio}" default="none" noSelection="['': '']"></joda:dateTimePicker>
+	<joda:dateTimePicker name="fechaInicio" value="${prestamoInstance?.fechaInicio}" default="${LocalDateTime.now()}" noSelection="['': '']"></joda:dateTimePicker>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fechaFin', 'error')} ">
@@ -55,29 +55,6 @@
 		<g:message code="prestamo.fechaFin.label" default="Fecha Fin" />
 		
 	</label>
-	<joda:dateTimePicker name="fechaFin" value="${prestamoInstance?.fechaFin}" default="none" noSelection="['': '']"></joda:dateTimePicker>
+	<joda:dateTimePicker name="fechaFin" value="${prestamoInstance?.fechaFin}" default="${LocalDateTime.now()}" noSelection="['': '']"></joda:dateTimePicker>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fechaEntrega', 'error')} ">
-	<label for="fechaEntrega">
-		<g:message code="prestamo.fechaEntrega.label" default="Fecha Entrega" />
-		
-	</label>
-	<joda:dateTimePicker name="fechaEntrega" value="${prestamoInstance?.fechaEntrega}" default="none" noSelection="['': '']"></joda:dateTimePicker>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fechaDevolucion', 'error')} ">
-	<label for="fechaDevolucion">
-		<g:message code="prestamo.fechaDevolucion.label" default="Fecha Devolucion" />
-
-	</label>
-	<joda:dateTimePicker name="fechaDevolucion" value="${prestamoInstance?.fechaDevolucion}" default="none" noSelection="['': '']"></joda:dateTimePicker>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'observacionDevolucion', 'error')} ">
-	<label for="observacionDevolucion">
-		<g:message code="prestamo.observacionDevolucion.label" default="Observacion Devolucion" />
-
-	</label>
-	<g:textArea name="observacionDevolucion" cols="40" rows="5" maxlength="999999" value="${prestamoInstance?.observacionDevolucion}"/>
-</div>

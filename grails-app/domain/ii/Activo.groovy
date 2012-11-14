@@ -5,9 +5,9 @@ import org.joda.time.LocalDateTime
 class Activo {
 
     String serie
+    TipoActivo tipo
     String nombre
     String descripcion
-    TipoActivo tipo
     Marca marca
     String modelo
     EstadoActivo estadoActual
@@ -39,9 +39,9 @@ class Activo {
 
     static constraints = {
         serie(blank: false, unique: true)
+        tipo(nullable: false)
         nombre(blank: true, maxSize: 100)
         descripcion(maxSize: 999999)
-        tipo(nullable: false)
         marca(nullable: true)
         modelo(maxSize: 50)
         estadoActual(nullable: false)
@@ -55,7 +55,7 @@ class Activo {
 
         costo()
         diasGarantia()
-        factura(maxSize: 50)
+        factura(blank: true, maxSize: 50)
         proveedor(maxSize: 50)
         esPedido()
         esComprado()

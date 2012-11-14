@@ -15,7 +15,7 @@ class Ambiente {
         tipo(nullable: false)
         capacidad(inList: 0..100)
         descripcion(maxSize: 999999, blank: true)
-        edificio(blank: false ,inList: ["Carrera de Informática", "Otro"])
+        edificio(blank: false, inList: ["Carrera de Informática", "Otro"])
         nivel(nullable: false)
         responsable(nullable: true)
     }
