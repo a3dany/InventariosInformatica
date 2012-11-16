@@ -1,6 +1,6 @@
 package ii
 
-import org.joda.time.*
+import org.joda.time.LocalDateTime
 
 class Prestamo {
 
@@ -11,7 +11,9 @@ class Prestamo {
     Ambiente ambienteDondeEstara
     LocalDateTime fechaInicio
     LocalDateTime fechaFin
+    boolean prestado = false
     LocalDateTime fechaEntrega
+    boolean devuelto = false
     LocalDateTime fechaDevolucion
     String observacionDevolucion
 
@@ -28,7 +30,9 @@ class Prestamo {
 
         fechaInicio(nullable: true)
         fechaFin(nullable: true)
+        prestado()
         fechaEntrega(nullable: true)
+        devuelto()
         fechaDevolucion(nullable: true)
         observacionDevolucion(blank: true, maxSize: 999999)
 

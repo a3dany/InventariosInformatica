@@ -4,10 +4,18 @@
 
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'item', 'error')} required">
 	<label for="item">
-		<g:message code="prestamo.item.label" default="Item" />
+		<g:message code="activo.activo" default="Item" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="item" name="item.id" from="${ii.Activo.list()}" optionKey="id" required="" value="${prestamoInstance?.item?.id}" class="many-to-one"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'solicitante', 'error')} required">
+    <label for="solicitante">
+        <g:message code="prestamo.solicitante.label" default="Solicitante" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:select id="solicitante" name="solicitante.id" from="${ii.Usuario.list()}" optionKey="id" required="" value="${prestamoInstance?.solicitante?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'detalleItem', 'error')} ">
@@ -18,12 +26,12 @@
 	<g:textArea name="detalleItem" cols="40" rows="5" maxlength="999999" value="${prestamoInstance?.detalleItem}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'solicitante', 'error')} required">
-	<label for="solicitante">
-		<g:message code="prestamo.solicitante.label" default="Solicitante" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="solicitante" name="solicitante.id" from="${ii.Usuario.list()}" optionKey="id" required="" value="${prestamoInstance?.solicitante?.id}" class="many-to-one"/>
+<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'ambienteDondeEstara', 'error')} ">
+    <label for="ambienteDondeEstara">
+        <g:message code="prestamo.ambienteDondeEstara.label" default="Ambiente Donde Estara" />
+
+    </label>
+    <g:select id="ambienteDondeEstara" name="ambienteDondeEstara.id" from="${ii.Ambiente.list()}" optionKey="id" value="${prestamoInstance?.ambienteDondeEstara?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'motivo', 'error')} ">
@@ -34,13 +42,7 @@
 	<g:textArea name="motivo" cols="40" rows="5" maxlength="999999" value="${prestamoInstance?.motivo}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'ambienteDondeEstara', 'error')} ">
-	<label for="ambienteDondeEstara">
-		<g:message code="prestamo.ambienteDondeEstara.label" default="Ambiente Donde Estara" />
-		
-	</label>
-	<g:select id="ambienteDondeEstara" name="ambienteDondeEstara.id" from="${ii.Ambiente.list()}" optionKey="id" value="${prestamoInstance?.ambienteDondeEstara?.id}" class="many-to-one" noSelection="['null': '']"/>
-</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'fechaInicio', 'error')} ">
 	<label for="fechaInicio">

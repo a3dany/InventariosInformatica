@@ -637,3 +637,12 @@ a.skip {
     text-indent: 25px;
     background-image: url(../images/skin/ic_action_esactivo.png);
 }
+
+#rojo {
+    background-color: #FF4444;
+    color: #ffffff;
+}
+#verde {
+    background-color: #99CC00;
+    color: #ffffff;
+}
