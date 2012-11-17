@@ -12,24 +12,29 @@ function iniciar() {
     $("#controlCompra5").fadeOut(0);
 
 
-    $("#selector1").click(actualizar1);
-    $("#selector2").click(actualizar2);
-    $("#selector3").click(actualizar3);
-    $("#controlEsComprado").click(actualizarCompra);
+    $("input[name=perteneceActivo]").click(actualizar1);
+
+    $("input[name=esAsignadoAmbiente]").click(actualizar2);
+
+  //  $("input[name=perteneceActivo]").click(actualizar1);
+  //  $("#selector3").click(actualizar3);
+
+
+    $("input[name=esComprado]").click(actualizarCompra);
 }
 
 function actualizar1() {
-    if ($("#control1").is(":visible")) {
-        $("#control1").fadeOut("slow");
-    } else {
+    if ($("input[name=perteneceActivo]").is(":checked")) {
         $("#control1").fadeIn("slow");
+    } else {
+        $("#control1").fadeOut("slow");
     }
 }
 function actualizar2() {
-    if ($("#control2").is(":visible")) {
-        $("#control2").fadeOut("slow");
-    } else {
+    if ($("input[name=esAsignadoAmbiente]").is(":checked")) {
         $("#control2").fadeIn("slow");
+    } else {
+        $("#control2").fadeOut("slow");
     }
 }
 function actualizar3() {
@@ -41,17 +46,17 @@ function actualizar3() {
 }
 
 function actualizarCompra() {
-    if ($("#controlCompra1").is(":visible")) {
-        $("#controlCompra1").fadeOut("slow");
-        $("#controlCompra2").fadeOut("slow");
-        $("#controlCompra3").fadeOut("slow");
-        $("#controlCompra4").fadeOut("slow");
-        $("#controlCompra5").fadeOut("slow");
-    } else {
+    if ($("input[name=esComprado]").is(":checked")) {
         $("#controlCompra1").fadeIn("slow");
         $("#controlCompra2").fadeIn("slow");
         $("#controlCompra3").fadeIn("slow");
         $("#controlCompra4").fadeIn("slow");
         $("#controlCompra5").fadeIn("slow");
+    } else {
+        $("#controlCompra1").fadeOut("slow");
+        $("#controlCompra2").fadeOut("slow");
+        $("#controlCompra3").fadeOut("slow");
+        $("#controlCompra4").fadeOut("slow");
+        $("#controlCompra5").fadeOut("slow");
     }
 }

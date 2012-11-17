@@ -2,6 +2,7 @@ package ii
 
 class TipoActivo {
 
+
     String nombre
     String categoria
     String descripcion

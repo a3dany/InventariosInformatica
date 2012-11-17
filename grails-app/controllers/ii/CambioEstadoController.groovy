@@ -1,10 +1,54 @@
 package ii
 
+import org.joda.time.LocalDateTime
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
+import grails.converters.XML
 
 class CambioEstadoController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+
+    def rest = {
+        switch (request.method) {
+            case 'GET':
+                doGet(params)
+                break;
+            case 'POST':
+                doPost(params)
+                break;
+            case 'PUT':
+                doPut(params)
+                break;
+            case 'DELETE':
+                doDelete(params)
+                break;
+
+        }
+    }
+
+    def doGet(params) {
+        render CambioEstado.list() as JSON
+    }
+
+    def doPost(params) {
+        def ce = new CambioEstado(params['ce'])
+        if (ce.save()) {
+            render ce as JSON
+        } else {
+            response.status = 500
+            render ce.errors as JSON
+        }
+    }
+
+    def doPut(params) {
+
+    }
+
+    def doDelete(params) {
+
+    }
 
     def index() {
         redirect(action: "list", params: params)
@@ -21,6 +65,10 @@ class CambioEstadoController {
 
     def save() {
         def cambioEstadoInstance = new CambioEstado(params)
+
+        cambioEstadoInstance.setResponsable(Usuario.findByUsername(sec.username()))
+        cambioEstadoInstance.setFechaRegistro(LocalDateTime.now())
+
         if (!cambioEstadoInstance.save(flush: true)) {
             render(view: "create", model: [cambioEstadoInstance: cambioEstadoInstance])
             return
@@ -28,6 +76,10 @@ class CambioEstadoController {
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'cambioEstado.label', default: 'CambioEstado'), cambioEstadoInstance.id])
         redirect(action: "show", id: cambioEstadoInstance.id)
+    }
+
+    def saveMobile() {
+        def cambioEstadoInstance = new CambioEstado(params)
     }
 
     def show(Long id) {
@@ -63,8 +115,8 @@ class CambioEstadoController {
         if (version != null) {
             if (cambioEstadoInstance.version > version) {
                 cambioEstadoInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'cambioEstado.label', default: 'CambioEstado')] as Object[],
-                          "Another user has updated this CambioEstado while you were editing")
+                        [message(code: 'cambioEstado.label', default: 'CambioEstado')] as Object[],
+                        "Another user has updated this CambioEstado while you were editing")
                 render(view: "edit", model: [cambioEstadoInstance: cambioEstadoInstance])
                 return
             }

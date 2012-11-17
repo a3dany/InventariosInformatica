@@ -4,6 +4,7 @@ import org.joda.time.LocalDateTime
 
 class CambioEstado {
 
+
     Activo item
     EstadoActivo anterior
     EstadoActivo actual

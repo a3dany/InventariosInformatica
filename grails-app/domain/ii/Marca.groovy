@@ -2,6 +2,7 @@ package ii
 
 class Marca {
 
+
     String nombre;
     String descripcion;
 

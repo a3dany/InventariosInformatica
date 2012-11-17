@@ -2,6 +2,7 @@ package ii
 
 class Usuario extends User {
 
+
     String nombres
     String apellidos
     String cargo

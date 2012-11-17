@@ -34,19 +34,3 @@
 	<g:textArea name="descripcion" cols="40" rows="5" maxlength="999999" value="${movimientoInstance?.descripcion}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: movimientoInstance, field: 'responsable', 'error')} ">
-	<label for="responsable">
-		<g:message code="movimiento.responsable.label" default="Responsable" />
-		
-	</label>
-	<g:select id="responsable" name="responsable.id" from="${ii.Usuario.list()}" optionKey="id" value="${movimientoInstance?.responsable?.id}" class="many-to-one" noSelection="['null': '']"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: movimientoInstance, field: 'fechaRegistro', 'error')} ">
-	<label for="fechaRegistro">
-		<g:message code="movimiento.fechaRegistro.label" default="Fecha Registro" />
-		
-	</label>
-	<joda:dateTimePicker name="fechaRegistro" value="${movimientoInstance?.fechaRegistro}" default="none" noSelection="['': '']"></joda:dateTimePicker>
-</div>
-

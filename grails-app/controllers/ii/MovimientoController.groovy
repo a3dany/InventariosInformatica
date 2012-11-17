@@ -1,6 +1,7 @@
 package ii
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.joda.time.LocalDateTime
 
 class MovimientoController {
 
@@ -21,6 +22,10 @@ class MovimientoController {
 
     def save() {
         def movimientoInstance = new Movimiento(params)
+
+        movimientoInstance.setResponsable(Usuario.findByUsername(sec.username()))
+        movimientoInstance.setFechaRegistro(LocalDateTime.now())
+
         if (!movimientoInstance.save(flush: true)) {
             render(view: "create", model: [movimientoInstance: movimientoInstance])
             return

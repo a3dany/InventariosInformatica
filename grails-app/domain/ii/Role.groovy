@@ -2,6 +2,7 @@ package ii
 
 class Role {
 
+
 	String authority
 
 	static mapping = {

@@ -2,6 +2,7 @@ package ii
 
 import org.joda.time.LocalDateTime
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
 
 class ActivoController {
 
@@ -14,6 +15,11 @@ class ActivoController {
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [activoInstanceList: Activo.findAllByEsActivo(true), activoInstanceTotal: Activo.countByEsActivo(true)]
+    }
+
+
+    def listMobile() {
+        render Activo.findAllByEsActivo(true) as JSON
     }
 
     def listPedidos(Integer max) {

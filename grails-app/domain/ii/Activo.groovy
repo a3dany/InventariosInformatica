@@ -4,6 +4,7 @@ import org.joda.time.LocalDateTime
 
 class Activo {
 
+
     String serie
     TipoActivo tipo
     String nombre

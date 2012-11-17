@@ -2,6 +2,7 @@ package ii
 
 class TipoAmbiente {
 
+
     String nombre
     String descripcion
 

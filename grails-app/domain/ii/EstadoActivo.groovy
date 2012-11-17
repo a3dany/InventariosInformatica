@@ -2,6 +2,7 @@ package ii
 
 class EstadoActivo {
 
+
     String nombre
     String descripcion
 

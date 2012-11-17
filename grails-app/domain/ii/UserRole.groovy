@@ -4,6 +4,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder
 
 class UserRole implements Serializable {
 
+
 	User user
 	Role role
 

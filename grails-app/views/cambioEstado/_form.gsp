@@ -15,6 +15,7 @@
 		<g:message code="cambioEstado.anterior.label" default="Anterior" />
 		<span class="required-indicator">*</span>
 	</label>
+
 	<g:select id="anterior" name="anterior.id" from="${ii.EstadoActivo.list()}" optionKey="id" required="" value="${cambioEstadoInstance?.anterior?.id}" class="many-to-one"/>
 </div>
 
@@ -28,25 +29,9 @@
 
 <div class="fieldcontain ${hasErrors(bean: cambioEstadoInstance, field: 'descripcion', 'error')} ">
 	<label for="descripcion">
-		<g:message code="cambioEstado.descripcion.label" default="Descripcion" />
+		<g:message code="cambioEstado.descripcion.label" />
 		
 	</label>
 	<g:textArea name="descripcion" cols="40" rows="5" maxlength="999999" value="${cambioEstadoInstance?.descripcion}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: cambioEstadoInstance, field: 'responsable', 'error')} ">
-	<label for="responsable">
-		<g:message code="cambioEstado.responsable.label" default="Responsable" />
-		
-	</label>
-	<g:select id="responsable" name="responsable.id" from="${ii.Usuario.list()}" optionKey="id" value="${cambioEstadoInstance?.responsable?.id}" class="many-to-one" noSelection="['null': '']"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: cambioEstadoInstance, field: 'fechaRegistro', 'error')} ">
-	<label for="fechaRegistro">
-		<g:message code="cambioEstado.fechaRegistro.label" default="Fecha Registro" />
-		
-	</label>
-	<joda:dateTimePicker name="fechaRegistro" value="${cambioEstadoInstance?.fechaRegistro}" default="none" noSelection="['': '']"></joda:dateTimePicker>
 </div>
 
