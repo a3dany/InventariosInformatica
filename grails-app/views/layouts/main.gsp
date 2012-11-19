@@ -5,37 +5,52 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Inventarios Informática"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title><g:layoutTitle default="Inventarios Informática"/></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
+    <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
     <g:javascript library="jquery"></g:javascript>
-		<g:layoutHead/>
-		<r:layoutResources />
-	</head>
-	<body>
-		<div id="grailsLogo" role="banner">
-            <a href="${createLink(uri: '/')}"><img src="${resource(dir: 'images', file: 'ii_logo.png')}" alt="Grails"/></a>
-            <span>
+    <g:layoutHead/>
+    <r:layoutResources/>
+</head>
+
+<body>
+<div id="grailsLogo" role="banner">
+    <div id="columna1">
+        <a href="${createLink(uri: '/')}"><img src="${resource(dir: 'images', file: 'ii_logo.png')}" alt="Grails"/></a>
+    </div>
+
+    <div id="columna2">
+        <span>
             <sec:ifNotLoggedIn>
                 <g:link controller="login" action="auth">Ingresar</g:link>
             </sec:ifNotLoggedIn>
             <sec:ifLoggedIn>
-                ${Usuario.findByUsername(sec.username()).nombres} ${Usuario.findByUsername(sec.username()).apellidos} (<g:link controller="logout">Salir</g:link>)
+                ${Usuario.findByUsername(sec.username()).nombres} ${Usuario.findByUsername(sec.username()).apellidos}
             </sec:ifLoggedIn>
-            </span>
-        </div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-		<g:javascript library="application"/>
-        <g:javascript src="utilidades.js"></g:javascript>
-		<r:layoutResources />
-	</body>
+        </span>
+    </div>
+
+    <div id="columna3">
+        <g:link controller="logout">
+            <img src="${resource(dir: 'images/skin', file: 'ic_action_eliminar.png')}" alt="Salir"/>
+        </g:link>
+    </div>
+
+    <div id="limpiarcolumnas"></div>
+</div>
+<g:layoutBody/>
+<div class="footer" role="contentinfo"></div>
+
+<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+<g:javascript library="application"/>
+<g:javascript src="utilidades.js"></g:javascript>
+<r:layoutResources/>
+</body>
 </html>

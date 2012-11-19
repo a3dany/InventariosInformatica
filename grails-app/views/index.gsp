@@ -86,6 +86,7 @@
 
 <div id="status" role="complementary">
     <sec:ifNotLoggedIn>
+
         <g:link controller="login" action="auth">Ingresa al sistema</g:link>
     </sec:ifNotLoggedIn>
     <sec:ifAnyGranted roles="ROLE_USUARIO,ROLE_TECNICO,ROLE_ADMINISTRADOR">
@@ -122,6 +123,7 @@
 
     <p>Inventarios Informática es un sistema web moderno que permite la administración de los activos fijos de la carrera de Informática de la Universidad Mayor de San Andrés. Este sistema ademas cuenta con una aplicación móvil para Android con la cual se podran hacer registros mas rapidos.</p>
     <br/>
+
     <p align="center"><img src="${resource(dir: 'images', file: 'laboratorio_informatica.png')}" alt="Informática"/></p>
 </div>
 </body>
