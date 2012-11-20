@@ -21,11 +21,16 @@ class UsuarioController {
 
     def save() {
         def usuarioInstance = new Usuario(params)
+
+        def rol = Role.findById(params.id)
+
+
+
         if (!usuarioInstance.save(flush: true)) {
             render(view: "create", model: [usuarioInstance: usuarioInstance])
             return
         }
-
+        UserRole.create(usuarioInstance, rol, true)
         flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuarioInstance.id])
         redirect(action: "show", id: usuarioInstance.id)
     }

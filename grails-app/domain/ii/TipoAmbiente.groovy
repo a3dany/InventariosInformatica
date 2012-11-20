@@ -7,7 +7,7 @@ class TipoAmbiente {
     String descripcion
 
     static constraints = {
-        nombre(blank: false)
+        nombre(blank: false, unique: true)
         descripcion(blank: false)
     }
 

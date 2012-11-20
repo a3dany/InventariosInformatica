@@ -5,17 +5,24 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        def usuarioRole = new Role(authority: 'ROLE_USUARIO').save(flush: true)
-        def administradorRole = new Role(authority: 'ROLE_ADMINISTRADOR').save(flush: true)
-        def tecnicoRole = new Role(authority: 'ROLE_TECNICO').save(flush: true)
+        def portero = new Role(authority: 'PORTERO').save(flush: true)
+        def administrador = new Role(authority: 'ADMINISTRADOR').save(flush: true)
+        def tecnico = new Role(authority: 'TECNICO').save(flush: true)
+        def autoridad = new Role(authority: 'AUTORIDAD').save(flush: true)
+        def usuarioGeneral = new Role(authority: 'USUARIO GENERAL').save(flush: true)
 
-        Usuario u1 = new Usuario(username: "dalvarez", password: "dalvarez", enabled: true, nombres: "Daniel", apellidos: "Alvarez", cargo: "Administrativo", ci: "6120049 LP").save(flush: true)
-        Usuario u2 = new Usuario(username: "kvasquez", password: "kvasquez", nombres: "Katherine", apellidos: "Vasquez", enabled: true, cargo: "Docente", ci: "6120087 LP").save(flush: true)
-        Usuario u3 = new Usuario(username: "jperez", password: "jperez", enabled: true, nombres: "Juan", apellidos: "Perez", cargo: "Docente", ci: "8755978 LP").save(flush: true)
+        Usuario u1 = new Usuario(username: "admin", password: "admin", enabled: true, nombres: "Administrador", apellidos: "General", cargo: "Administrativo", ci: "7777777 LP").save(flush: true)
+        Usuario u2 = new Usuario(username: "oguzman", password: "oguzman", nombres: "Oscar", apellidos: "Guzman", enabled: true, cargo: "Técnico", ci: "6120087 LP").save(flush: true)
+        Usuario u3 = new Usuario(username: "mmorales", password: "mmorales", enabled: true, nombres: "Menfy", apellidos: "Morales Rios", cargo: "Docente", ci: "8755978 LP").save(flush: true)
+        Usuario u4 = new Usuario(username: "jperez", password: "jperez", enabled: true, nombres: "Juan", apellidos: "Perez", cargo: "Portero", ci: "8755998 LP").save(flush: true)
+        Usuario u5 = new Usuario(username: "bcarvajal", password: "bcarvajal", enabled: true, nombres: "Brigida", apellidos: "Carvajal Blanco", cargo: "Docente", ci: "8758978 LP").save(flush: true)
 
-        UserRole.create(u1, administradorRole, true)
-        UserRole.create(u2, tecnicoRole, true)
-        UserRole.create(u3, usuarioRole, true)
+
+        UserRole.create(u1, administrador, true)
+        UserRole.create(u2, tecnico, true)
+        UserRole.create(u3, autoridad, true)
+        UserRole.create(u4, portero, true)
+        UserRole.create(u5, usuarioGeneral, true)
 
 
         Nivel n1 = new Nivel(nombre: "Sotano", descripcion: "Aulas.").save(flush: true)
@@ -84,6 +91,7 @@ class BootStrap {
         new Marca(nombre: "HP", descripcion: "").save(flush: true)
         new Marca(nombre: "HTC", descripcion: "").save(flush: true)
         new Marca(nombre: "Maxtor", descripcion: "").save(flush: true)
+        new Marca(nombre: "Sony Ericsson", descripcion: "").save(flush: true)
         new Marca(nombre: "Hitachi", descripcion: "").save(flush: true)
         new Marca(nombre: "Otro", descripcion: "").save(flush: true)
 

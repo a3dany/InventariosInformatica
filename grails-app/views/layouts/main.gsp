@@ -25,24 +25,19 @@
     <div id="columna1">
         <a href="${createLink(uri: '/')}"><img src="${resource(dir: 'images', file: 'ii_logo.png')}" alt="Grails"/></a>
     </div>
-
-    <div id="columna2">
-        <span>
-            <sec:ifNotLoggedIn>
-                <g:link controller="login" action="auth">Ingresar</g:link>
-            </sec:ifNotLoggedIn>
-            <sec:ifLoggedIn>
+    <sec:ifLoggedIn>
+        <div id="columna2">
+            <span>
                 ${Usuario.findByUsername(sec.username()).nombres} ${Usuario.findByUsername(sec.username()).apellidos}
-            </sec:ifLoggedIn>
-        </span>
-    </div>
+            </span>
+        </div>
 
-    <div id="columna3">
-        <g:link controller="logout">
-            <img src="${resource(dir: 'images/skin', file: 'ic_action_eliminar.png')}" alt="Salir"/>
-        </g:link>
-    </div>
-
+        <div id="columna3">
+            <g:link controller="logout">
+                <img src="${resource(dir: 'images/skin', file: 'ic_action_eliminar.png')}" alt="Salir"/>
+            </g:link>
+        </div>
+    </sec:ifLoggedIn>
     <div id="limpiarcolumnas"></div>
 </div>
 <g:layoutBody/>

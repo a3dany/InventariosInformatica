@@ -4,18 +4,30 @@
     <title><g:message code="springSecurity.login.title"/></title>
     <style type='text/css' media='screen'>
     #login {
-        margin: 15px 0px;
-        padding: 0px;
+        border: .2em solid #fff;
+        padding: 2em;
+        padding-bottom: 0em;
+        padding-left: 0em;
+        padding-right: 0em;
+        margin: 1em;
         text-align: center;
+        background-image: url("${resource(dir: 'images', file: 'laboratorio_informatica.png')}");
+
+        -moz-box-shadow: 0px 0px 1.25em #ccc;
+        -webkit-box-shadow: 0px 0px 1.25em #ccc;
+        box-shadow: 0px 0px 1.25em #ccc;
+        -moz-border-radius: 0.6em;
+        -webkit-border-radius: 0.6em;
+        border-radius: 0.6em;
     }
 
     #login .inner {
-        width: 340px;
+        width: 250px;
         padding-bottom: 6px;
-        margin: 60px auto;
+        margin: 10px auto;
         text-align: left;
-        border: 1px solid #aab;
-        background-color: #C6C6C6;
+        border: 1px solid #ECECEC;
+        /*        background-color: #ECECEC;*/
         -moz-box-shadow: 2px 2px 2px #eee;
         -webkit-box-shadow: 2px 2px 2px #eee;
         -khtml-box-shadow: 2px 2px 2px #eee;
@@ -23,19 +35,19 @@
     }
 
     #login .inner .fheader {
-        padding: 18px 26px 14px 26px;
-        background-color: #C6C6C6;
+        padding: 10px 10px 10px 10px;
+        /*background-color: #ECECEC;*/
         margin: 0px 0 14px 0;
         color: #2e3741;
         font-size: 18px;
-        font-weight: bold;
+
     }
 
     #login .inner .cssform p {
         clear: left;
         margin: 0;
         padding: 4px 0 3px 0;
-        padding-left: 105px;
+        padding-left: 50px;
         margin-bottom: 20px;
         height: 1%;
     }
@@ -45,7 +57,7 @@
     }
 
     #login .inner .cssform label {
-        font-weight: bold;
+
         float: left;
         text-align: right;
         margin-left: -105px;
@@ -55,7 +67,7 @@
     }
 
     #login #remember_me_holder {
-        padding-left: 120px;
+        padding-left: 50px;
     }
 
     #login #submit {
@@ -66,55 +78,111 @@
         float: none;
         margin-left: 0;
         text-align: left;
-        width: 200px
+        width: 50px
     }
 
-    #login .inner .login_message {
-        padding: 6px 25px 20px 25px;
-        color: #c33;
+    .login_message {
+        padding-bottom: 0.5em;
+        color: #FF4444;
     }
 
-    #login .inner .text_ {
+    .text_ {
         width: 120px;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
     }
 
     #login .inner .chk {
         height: 12px;
     }
+
+    #textoprincipal {
+
+        font-family: "roboto-light";
+        font-size: 1.5em;
+        padding: 1em;
+        text-align: center;
+    }
+
+    #contenido {
+        margin: 1em;
+        margin-top: 1.5em;
+        text-align: center;
+    }
+
+    .caja {
+        margin-top: 15em;
+        padding: 1em;
+        background-color: #383838;
+        color: #ECECEC;
+        -moz-border-radius: 0.4em;
+        -webkit-border-radius: 0.4em;
+        border-radius: 0.4em;
+        font-family: roboto-light;
+        font-size: 1.25em;
+    }
+
+    input[type='submit'] {
+        color: #383838;
+        background-color: #ECECEC;
+        -moz-border-radius: 0.3em;
+        -webkit-border-radius: 0.3em;
+        border-radius: 0.3em;
+        margin-right: 1em;
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+
+    input[type='submit']:hover {
+        background-color: #C6C6C6;
+    }
+
+    input[type='submit']:active {
+        background-color: #C6C6C6;
+    }
+
+     #pie {
+         font-size: 0.7em;
+     }
+
     </style>
 </head>
 
 <body>
-<div id='login'>
-    <div class='inner'>
-        <div class='fheader'><g:message code="springSecurity.login.header"/></div>
 
-        <g:if test='${flash.message}'>
-            <div class='login_message'>${flash.message}</div>
-        </g:if>
+<div id="contenido">
+    <span id="textoprincipal">Gestión de activos fijos, moderno y móvil.</span>
+    <br/>
 
-        <form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
-            <p>
-                <label for='username'><g:message code="springSecurity.login.username.label"/>:</label>
+    <div id='login'>
+        <div class='caja'>
+
+            <g:if test='${flash.message}'>
+                <div class='login_message'>${flash.message}</div>
+            </g:if>
+
+            <form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
+
+                <label for='username'><g:message code="springSecurity.login.username.label"/></label>
                 <input type='text' class='text_' name='j_username' id='username'/>
-            </p>
 
-            <p>
-                <label for='password'><g:message code="springSecurity.login.password.label"/>:</label>
+                <label for='password'><g:message code="springSecurity.login.password.label"/></label>
                 <input type='password' class='text_' name='j_password' id='password'/>
-            </p>
 
-            <p id="remember_me_holder">
+                <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
+
+
                 <input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me'
                        <g:if test='${hasCookie}'>checked='checked'</g:if>/>
                 <label for='remember_me'><g:message code="springSecurity.login.remember.me.label"/></label>
-            </p>
 
-            <p>
-                <input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
-            </p>
-        </form>
+            </form>
+        </div>
     </div>
+    Ingrese al sistema con su cuenta personal, si no tiene una contactese con el responsable de sistemas.
+    <br/><br/><br/>
+    <span id="pie">Desarrollo del sistema web y aplicación movíl por <a href="http://about.me/danyalvarez">Daniel Alvarez</a>.</span>
+
 </div>
 <script type='text/javascript'>
     <!--

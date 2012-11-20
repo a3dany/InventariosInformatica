@@ -1,3 +1,4 @@
+<%@ page import="ii.Usuario" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,53 +79,130 @@
             margin-top: 0;
         }
     }
+
+    #colum1 {
+        float: left;
+        width: 20%;
+    }
+
+    #colum2 {
+        float: left;
+        width: 20%;
+    }
+
+    #colum3 {
+        float: left;
+        width: 20%;
+    }
+
+    #colum4 {
+        float: left;
+        width: 20%;
+    }
+
+    #colum1, #colum2, #colum3, #colum4 {
+        text-align: center;
+        margin: 1.4em;
+        margin-top: 6em;
+        margin-bottom: 6em;
+    }
+
+    #fincolum {
+        clear: both;
+
+        border: .2em solid #fff;
+        margin: 2em 2em 1em;
+        padding: 1em;
+        -moz-box-shadow: 0px 0px 1.25em #ccc;
+        -webkit-box-shadow: 0px 0px 1.25em #ccc;
+        box-shadow: 0px 0px 1.25em #ccc;
+        -moz-border-radius: 0.6em;
+        -webkit-border-radius: 0.6em;
+        border-radius: 0.6em;
+
+        text-align: center;
+    }
+
+    .navi {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        width: 10em;
+    }
+
+    .navi li {
+        background-image: url("images/vinieta.png");
+        background-repeat: no-repeat;
+        background-position: 0%;
+        padding-left: 1.5em;
+        margin: 0.75em 0;
+    }
     </style>
 </head>
 
 <body>
-<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+<sec:ifAnyGranted roles="AUTORIDAD,TECNICO,ADMINISTRADOR">
+    <div id="colum1">
 
-<div id="status" role="complementary">
-    <sec:ifNotLoggedIn>
+        <img src="images/icon_consultas.png">
 
-        <g:link controller="login" action="auth">Ingresa al sistema</g:link>
-    </sec:ifNotLoggedIn>
-    <sec:ifAnyGranted roles="ROLE_USUARIO,ROLE_TECNICO,ROLE_ADMINISTRADOR">
-        <h1>Registro</h1>
-        <ul>
-            <li>- <g:link controller="prestamo">Prestamos</g:link></li>
-            <li>- <g:link controller="cambioEstado">Cambios de estado</g:link></li>
-            <li>- <g:link controller="movimiento">Movimientos</g:link></li>
-            <br/>
+        <h1>Informar</h1>
+
+        <ul class="navi">
+            <li><g:link controller="activo" action="listPedidos">Pedidos</g:link></li>
         </ul>
-    </sec:ifAnyGranted>
-    <sec:ifAnyGranted roles="ROLE_TECNICO,ROLE_ADMINISTRADOR">
-        <h1>ACTIVOS</h1>
-        <ul>
-            <li>- <g:link controller="activo">Activos Fijos</g:link></li>
-            <li>- <g:link controller="tipoActivo">Tipos de Activos</g:link></li>
-            <br/>
+
+    </div>
+</sec:ifAnyGranted>
+<sec:ifAnyGranted roles="PORTERO,TECNICO,ADMINISTRADOR">
+    <div id="colum2">
+
+        <img src="images/icon_movimientos.png">
+
+        <h1>Mover</h1>
+        <ul class="navi">
+            <li><g:link controller="prestamo">Prestamos</g:link></li>
+            <li><g:link controller="cambioEstado">Cambios de estado</g:link></li>
+            <li><g:link controller="movimiento">Movimientos</g:link></li>
         </ul>
-    </sec:ifAnyGranted>
-    <sec:ifAllGranted roles="ROLE_ADMINISTRADOR">
+
+    </div>
+</sec:ifAnyGranted>
+<sec:ifAnyGranted roles="TECNICO,ADMINISTRADOR">
+    <div id="colum3">
+
+        <img src="images/icon_activo.png">
+
+        <h1>Inventariar</h1>
+        <ul class="navi">
+            <li><g:link controller="activo">Activos Fijos</g:link></li>
+            <li><g:link controller="tipoActivo">Tipos de Activos</g:link></li>
+        </ul>
+
+    </div>
+</sec:ifAnyGranted>
+<sec:ifAllGranted roles="ADMINISTRADOR">
+    <div id="colum4">
+
+        <img src="images/icon_admin.png">
+
         <h1>Administrar</h1>
-        <ul>
-            <li>- <g:link controller="usuario">Usuarios</g:link></li>
-            <li>- <g:link controller="ambiente">Ambientes</g:link></li>
-            <li>- <g:link controller="tipoAmbiente">Tipos de Ambientes</g:link></li>
-            <li>- <g:link controller="nivel">Niveles</g:link></li>
-            <br/>
+        <ul class="navi">
+            <li><g:link controller="usuario">Usuarios</g:link></li>
+            INFRAESTRUCTURA
+            <li><g:link controller="ambiente">Ambientes</g:link></li>
+            <li><g:link controller="tipoAmbiente">Tipos de Ambientes</g:link></li>
+            <li><g:link controller="nivel">Niveles</g:link></li>
         </ul>
-    </sec:ifAllGranted>
-</div>
 
-<div id="page-body" role="main">
-    <h1>Bienvenido</h1>
+    </div>
+</sec:ifAllGranted>
 
-    <p>Inventarios Informática es un sistema web moderno que permite la administración de los activos fijos de la carrera de Informática de la Universidad Mayor de San Andrés. Este sistema ademas cuenta con una aplicación móvil para Android con la cual se podran hacer registros mas rapidos.</p>
-    <br/>
-
-    <p align="center"><img src="${resource(dir: 'images', file: 'laboratorio_informatica.png')}" alt="Informática"/></p>
+<div id="fincolum">
+    ${Usuario.findByUsername(sec.username()).cargo},
+    <g:link action="show" controller="usuario"
+            id="${Usuario.findByUsername(sec.username()).id}">Configurar cuenta</g:link>
 </div>
 </body>
 </html>

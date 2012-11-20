@@ -11,7 +11,7 @@ class Usuario extends User {
     static constraints = {
         nombres(blank: false, minSize: 2)
         apellidos(blank: false, minSize: 2)
-        cargo(inList: ["Administrativo", "Portero", "Docente", "Estudiante"])
+        cargo(inList: ["Administrativo", "Portero", "Docente", "Estudiante", "Técnico"])
         ci(unique: true)
     }
 
