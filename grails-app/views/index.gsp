@@ -125,19 +125,36 @@
 
     .navi {
         list-style-type: none;
-        padding: 0;
-        margin: 0;
         text-align: left;
-        width: 10em;
+        width: 12em;
     }
 
-    .navi li {
-        background-image: url("images/vinieta.png");
-        background-repeat: no-repeat;
-        background-position: 0%;
-        padding-left: 1.5em;
-        margin: 0.75em 0;
+    li {
+        padding-top: 0.4em;
+        padding-left: 0.25em;
+        padding-bottom: 0.4em;
     }
+
+    li a {
+        padding: 0.25em;
+        text-decoration: none;
+        color: #383838;
+        background-color: #ECECEC;
+        -moz-border-radius: 0.3em;
+        -webkit-border-radius: 0.3em;
+        border-radius: 0.3em;
+
+
+    }
+
+    li a:hover {
+        background-color: #C6C6C6;
+    }
+
+    li a:active {
+        background-color: #C6C6C6;
+    }
+
     </style>
 </head>
 
@@ -190,7 +207,7 @@
         <h1>Administrar</h1>
         <ul class="navi">
             <li><g:link controller="usuario">Usuarios</g:link></li>
-            INFRAESTRUCTURA
+            <br/>INFRAESTRUCTURA
             <li><g:link controller="ambiente">Ambientes</g:link></li>
             <li><g:link controller="tipoAmbiente">Tipos de Ambientes</g:link></li>
             <li><g:link controller="nivel">Niveles</g:link></li>

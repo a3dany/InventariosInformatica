@@ -11,7 +11,7 @@
         padding-right: 0em;
         margin: 1em;
         text-align: center;
-        background-image: url("${resource(dir: 'images', file: 'laboratorio_informatica.png')}");
+        background-image: url("${resource(dir: 'images', file: 'laboratorio_informatica.jpg')}");
 
         -moz-box-shadow: 0px 0px 1.25em #ccc;
         -webkit-box-shadow: 0px 0px 1.25em #ccc;
@@ -111,7 +111,7 @@
     }
 
     .caja {
-        margin-top: 15em;
+        margin-top: 9em;
         padding: 1em;
         background-color: #383838;
         color: #ECECEC;
@@ -151,9 +151,10 @@
 <body>
 
 <div id="contenido">
+    <br/>
     <span id="textoprincipal">Gestión de activos fijos, moderno y móvil.</span>
     <br/>
-
+    <br/>
     <div id='login'>
         <div class='caja'>
 
@@ -179,8 +180,9 @@
             </form>
         </div>
     </div>
+    <br/>
     Ingrese al sistema con su cuenta personal, si no tiene una contactese con el responsable de sistemas.
-    <br/><br/><br/>
+    <br/><br/><br/><br/>
     <span id="pie">Desarrollo del sistema web y aplicación movíl por <a href="http://about.me/danyalvarez">Daniel Alvarez</a>.</span>
 
 </div>

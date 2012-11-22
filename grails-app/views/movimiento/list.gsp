@@ -4,19 +4,18 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'movimiento.label', default: 'Movimiento')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<title><g:message code="movimiento.movimientos.label" /></title>
 	</head>
 	<body>
 		<a href="#list-movimiento" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="create" action="create"><g:message code="movimiento.nuevo.label" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-movimiento" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h1><g:message code="movimiento.movimientos.label" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -30,7 +29,7 @@
 					
 						<th><g:message code="movimiento.destino.label" default="Destino" /></th>
 					
-						<g:sortableColumn property="descripcion" title="${message(code: 'movimiento.descripcion.label', default: 'Descripcion')}" />
+						<g:sortableColumn property="descripcion" title="${message(code: 'movimiento.descripcion.label')}" />
 					
 						<th><g:message code="movimiento.responsable.label" default="Responsable" /></th>
 					

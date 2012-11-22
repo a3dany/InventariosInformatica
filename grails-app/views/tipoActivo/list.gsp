@@ -4,19 +4,18 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'tipoActivo.label', default: 'TipoActivo')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<title><g:message code="tipoactivo.tiposactivo.label" /></title>
 	</head>
 	<body>
 		<a href="#list-tipoActivo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="create" action="create"><g:message code="tipoactivo.nuevo.label" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-tipoActivo" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h1><g:message code="tipoactivo.tiposactivo.label" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -28,7 +27,7 @@
 					
 						<g:sortableColumn property="categoria" title="${message(code: 'tipoActivo.categoria.label', default: 'Categoria')}" />
 					
-						<g:sortableColumn property="descripcion" title="${message(code: 'tipoActivo.descripcion.label', default: 'Descripcion')}" />
+						<g:sortableColumn property="descripcion" title="${message(code: 'tipoactivo.descripcion.label', default: 'Descripcion')}" />
 					
 					</tr>
 				</thead>
