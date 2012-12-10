@@ -5,10 +5,9 @@
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'item', 'error')} required">
     <label for="item">
         <g:message code="activo.activo" default="Item"/>
-        <span class="required-indicator">*</span>
     </label>
-    <g:select id="item" name="item.id" from="${ii.Activo.list()}" optionKey="id" required=""
-              value="${prestamoInstance?.item?.id}" class="many-to-one"/>
+    <g:hiddenField name="item.id" value="${activoInstance.id}"></g:hiddenField>
+    <g:textField name="activo" disabled="" value="${activoInstance}"></g:textField>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: prestamoInstance, field: 'solicitante', 'error')} required">

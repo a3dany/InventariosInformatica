@@ -197,7 +197,7 @@ img {
     text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create {
+.nav a.home, .nav a.list, .nav a.create, .nav a.documento {
     background-position: 0.7em center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -213,6 +213,10 @@ img {
 
 .nav a.create {
     background-image: url(../images/skin/ic_action_adicionar.png);
+}
+
+.nav a.documento {
+    background-image: url(../images/skin/ic_action_documento.png);
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */

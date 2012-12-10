@@ -1,11 +1,39 @@
 package ii
 
-import org.springframework.dao.DataIntegrityViolationException
 import grails.converters.JSON
+import grails.converters.XML
+import org.springframework.dao.DataIntegrityViolationException
 
 class AmbienteController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+
+    def rest = {
+        switch (request.method) {
+            case 'GET':
+                hacerGet(params)
+                break;
+            case 'POST':
+                hacerPost(params)
+                break;
+            case 'PUT':
+                hacerPut(params)
+                break;
+            case 'DELETE':
+                hacerDelete(params)
+                break;
+        }
+    }
+
+    void hacerGet(params) {
+        if (params.id == null) {
+            render Ambiente.list() as XML;
+        } else {
+            def ambiente = Ambiente.get(params.id)
+            render ambiente as XML;
+        }
+    }
 
     def index() {
         redirect(action: "list", params: params)
@@ -43,7 +71,7 @@ class AmbienteController {
             return
         }
 
-        [ambienteInstance: ambienteInstance]
+        [ambienteInstance: ambienteInstance, activoInstanceList: Activo.findAllByEsActivoAndAmbienteActual(true, ambienteInstance), activoInstanceTotal: Activo.countByEsActivoAndAmbienteActual(true, ambienteInstance)]
     }
 
     def showMobile(Long id) {
@@ -72,8 +100,8 @@ class AmbienteController {
         if (version != null) {
             if (ambienteInstance.version > version) {
                 ambienteInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'ambiente.label', default: 'Ambiente')] as Object[],
-                          "Another user has updated this Ambiente while you were editing")
+                        [message(code: 'ambiente.label', default: 'Ambiente')] as Object[],
+                        "Another user has updated this Ambiente while you were editing")
                 render(view: "edit", model: [ambienteInstance: ambienteInstance])
                 return
             }

@@ -14,7 +14,7 @@ class TipoActivo {
     }
 
     String toString() {
-        "$nombre ($categoria)"
+        "$nombre"
     }
 }
 

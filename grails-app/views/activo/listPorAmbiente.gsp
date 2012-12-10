@@ -7,8 +7,9 @@
 </head>
 
 <body>
-<a href="#list-activo" class="skip" tabindex="-1"><g:message code="default.link.skip.label"
-                                                             default="Skip to content&hellip;"/></a>
+<a href="#list-activo" class="skip" tabindex="-1">
+    <g:message code="default.link.skip.label" default="Skip to content&hellip;"/>
+</a>
 
 <div class="nav" role="navigation">
     <ul>
@@ -36,9 +37,9 @@
 
             <g:sortableColumn property="nombre" title="${message(code: 'activo.nombre.label')}"/>
 
-            <th><g:message code="activo.marca.label"/></th>
+            <th>Ambiente</th>
 
-            <g:sortableColumn property="modelo" title="${message(code: 'activo.modelo.label')}"/>
+            <g:sortableColumn property="ambienteActual.nivel.nombre" title="Piso" defaultOrder="asc"/>
 
             <th><g:message code="activo.responsable.label"/></th>
 
@@ -48,16 +49,18 @@
         <g:each in="${activoInstanceList}" status="i" var="activoInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                <td><g:link action="show"
-                            id="${activoInstance.id}">${fieldValue(bean: activoInstance, field: "serie")}</g:link></td>
+                <td>
+                    <g:link action="show"
+                            id="${activoInstance.id}">${fieldValue(bean: activoInstance, field: "serie")}</g:link>
+                </td>
 
                 <td>${fieldValue(bean: activoInstance, field: "tipo")}</td>
 
                 <td>${fieldValue(bean: activoInstance, field: "nombre")}</td>
 
-                <td>${fieldValue(bean: activoInstance, field: "marca")}</td>
+                <td>${activoInstance.ambienteActual}</td>
 
-                <td>${fieldValue(bean: activoInstance, field: "modelo")}</td>
+                <td>${fieldValue(bean: activoInstance, field: "ambienteActual.nivel.nombre")}</td>
 
                 <td><g:link action="show" controller="usuario"
                             id="${activoInstance.responsable.id}">${activoInstance.responsable}</g:link></td>

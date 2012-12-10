@@ -1,12 +1,39 @@
 package ii
 
+import grails.converters.XML
 import org.joda.time.LocalDateTime
 import org.springframework.dao.DataIntegrityViolationException
-import grails.converters.JSON
 
 class ActivoController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+    def rest = {
+        switch (request.method) {
+            case 'GET':
+                hacerGet(params)
+                break;
+            case 'POST':
+                hacerPost(params)
+                break;
+            case 'PUT':
+                hacerPut(params)
+                break;
+            case 'DELETE':
+                hacerDelete(params)
+                break;
+        }
+    }
+
+    void hacerGet(params) {
+        if (params.id == null) {
+            render Activo.list() as XML;
+        } else {
+            def activo = Activo.findBySerie(params.id)
+            render activo as XML;
+        }
+    }
+
 
     def index() {
         redirect(action: "list", params: params)
@@ -17,16 +44,23 @@ class ActivoController {
         [activoInstanceList: Activo.findAllByEsActivo(true), activoInstanceTotal: Activo.countByEsActivo(true)]
     }
 
-
-    def listMobile() {
-        render Activo.findAllByEsActivo(true) as JSON
-    }
-
     def listPedidos(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         render(view: 'listPedidos', model: [activoInstanceList: Activo.findAllByEsPedido(true), activoInstanceTotal: Activo.countByEsPedido(true)])
-
     }
+
+
+    def misActivos(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        render(view: 'listMisActivos', model: [activoInstanceList: Activo.findAllByResponsable(Usuario.findByUsername(sec.username())), activoInstanceTotal: Activo.countByResponsable(Usuario.findByUsername(sec.username()))])
+    }
+
+    def listPorAmbiente(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+
+        render(view: 'listPorAmbiente', model: [activoInstanceList: Activo.findAllByEsActivo(true, [sort: "ambienteActual.nivel.nombre", order: "asc"]), activoInstanceTotal: Activo.countByEsActivo(true)])
+    }
+
 
     def create() {
         [activoInstance: new Activo(params)]
@@ -34,6 +68,24 @@ class ActivoController {
 
     def createPedido() {
         render(view: 'createPedido', model: [activoInstance: new Activo(params)])
+    }
+
+    def buscarActivo() {
+        if (params.id) {
+            // Modelo, Nombre, Serie, Marca
+            def marca = Marca.findByNombre(params.id)
+            def tipo = TipoActivo.findByNombre(params.id)
+            def resultado = Activo.findAllByModeloLikeOrNombreLikeOrSerieLikeOrMarcaOrTipo("%" + params.id + "%", "%" + params.id + "%", params.id + "%", marca, tipo)
+            int numero = resultado.size()
+            if (numero > 0) {
+                render(view: 'listBuscar', model: [activoInstanceList: resultado, activoInstanceTotal: numero])
+            } else {
+                render(view: 'listBuscar', model: [activoInstanceList: null, activoInstanceTotal: numero])
+            }
+        } else {
+            render(view: 'listBuscar', model: [activoInstanceList: Activo.findAllByEsActivo(true), activoInstanceTotal: Activo.countByEsActivo(true)])
+        }
+
     }
 
     def save() {

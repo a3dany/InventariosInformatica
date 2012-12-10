@@ -2,7 +2,6 @@ package ii
 
 class Ambiente {
 
-
     String nombre
     TipoAmbiente tipo
     int capacidad

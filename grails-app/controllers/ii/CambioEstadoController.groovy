@@ -13,41 +13,49 @@ class CambioEstadoController {
     def rest = {
         switch (request.method) {
             case 'GET':
-                doGet(params)
+                hacerGet(params)
                 break;
             case 'POST':
-                doPost(params)
+                hacerPost(params)
                 break;
             case 'PUT':
-                doPut(params)
+                hacerPut(params)
                 break;
             case 'DELETE':
-                doDelete(params)
+                hacerDelete(params)
                 break;
-
         }
     }
 
-    def doGet(params) {
-        render CambioEstado.list() as JSON
-    }
+    void hacerPost(params) {
+        def cambioEstado = new CambioEstado()
+        def x = request.XML
+        String itemXML = x.item
+        cambioEstado.item = Activo.findBySerie(itemXML)
+        cambioEstado.anterior = cambioEstado.item.getEstadoActual()
+        String estadoActualXML = x.actual
+        cambioEstado.actual = EstadoActivo.findByNombre(estadoActualXML)
+        cambioEstado.descripcion = x.descripcion
 
-    def doPost(params) {
-        def ce = new CambioEstado(params['ce'])
-        if (ce.save()) {
-            render ce as JSON
+        cambioEstado.setResponsable(Usuario.findByUsername(sec.username()))
+        cambioEstado.setFechaRegistro(LocalDateTime.now())
+
+
+        if (cambioEstado.save()) {
+            render cambioEstado as XML
         } else {
             response.status = 500
-            render ce.errors as JSON
+            render cambioEstado.errors as XML
         }
     }
 
-    def doPut(params) {
-
-    }
-
-    def doDelete(params) {
-
+    void hacerGet(params) {
+        if (params.id == null) {
+            render CambioEstado.list() as XML;
+        } else {
+            def cambioEstado = CambioEstado.get(params.id)
+            render cambioEstado as XML;
+        }
     }
 
     def index() {
@@ -59,8 +67,16 @@ class CambioEstadoController {
         [cambioEstadoInstanceList: CambioEstado.list(params), cambioEstadoInstanceTotal: CambioEstado.count()]
     }
 
+    def listPdf() {
+        renderPdf(template: "/listPdf", model:[titulo: "Cambio de estado", cambioEstadoInstanceList: CambioEstado.list(), cambioEstadoInstanceTotal: CambioEstado.count()] )
+    }
+
     def create() {
         [cambioEstadoInstance: new CambioEstado(params)]
+    }
+
+    def createWith() {
+        render(view: 'createWith', model: [activoInstance: Activo.findById(params.id)])
     }
 
     def save() {
@@ -73,6 +89,27 @@ class CambioEstadoController {
             render(view: "create", model: [cambioEstadoInstance: cambioEstadoInstance])
             return
         }
+
+        def activo = Activo.findById(cambioEstadoInstance.item.id)
+        activo.setEstadoActual(cambioEstadoInstance.actual)
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'cambioEstado.label', default: 'CambioEstado'), cambioEstadoInstance.id])
+        redirect(action: "show", id: cambioEstadoInstance.id)
+    }
+
+    def saveWith() {
+        def cambioEstadoInstance = new CambioEstado(params)
+
+        cambioEstadoInstance.setResponsable(Usuario.findByUsername(sec.username()))
+        cambioEstadoInstance.setFechaRegistro(LocalDateTime.now())
+
+        if (!cambioEstadoInstance.save(flush: true)) {
+            render(view: "createWith", model: [cambioEstadoInstance: cambioEstadoInstance])
+            return
+        }
+
+        def activo = Activo.findById(cambioEstadoInstance.item.id)
+        activo.setEstadoActual(cambioEstadoInstance.actual)
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'cambioEstado.label', default: 'CambioEstado'), cambioEstadoInstance.id])
         redirect(action: "show", id: cambioEstadoInstance.id)

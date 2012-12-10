@@ -4,20 +4,19 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'nivel.label', default: 'Nivel')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<title><g:message code="nivel.label" /></title>
 	</head>
 	<body>
 		<a href="#show-nivel" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="list" action="list"><g:message code="nivel.niveles.label" /></g:link></li>
+				<li><g:link class="create" action="create"><g:message code="nivel.nuevoNivel.label" /></g:link></li>
 			</ul>
 		</div>
 		<div id="show-nivel" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<h1><g:message code="nivel.label" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

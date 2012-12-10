@@ -4,15 +4,14 @@ import org.joda.time.LocalDateTime
 
 class Activo {
 
-
     String serie
-    TipoActivo tipo
+    TipoActivo tipo = null
     String nombre
     String descripcion
-    Marca marca
+    Marca marca = null
     String modelo
-    EstadoActivo estadoActual
-    Usuario responsable
+    EstadoActivo estadoActual = null
+    Usuario responsable = null
 
     // Activo
     boolean perteneceActivo = false

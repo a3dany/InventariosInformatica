@@ -1,10 +1,51 @@
 package ii
 
+import grails.converters.XML
 import org.springframework.dao.DataIntegrityViolationException
 
 class MarcaController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+
+    def rest = {
+        switch (request.method) {
+            case 'GET':
+                hacerGet(params)
+                break;
+            case 'POST':
+                hacerPost(params)
+                break;
+            case 'PUT':
+                hacerPut(params)
+                break;
+            case 'DELETE':
+                hacerDelete(params)
+                break;
+        }
+    }
+
+    void hacerPost(params) {
+        def marca = new Marca()
+        def x = request.XML
+        marca.nombre = x.nombre
+        marca.descripcion = x.descripcion
+
+        if (marca.save()) {
+            render marca as XML
+        } else {
+            response.status = 500
+            render marca.errors as XML
+        }
+    }
+
+    void hacerGet(params) {
+        def marca = Marca.get(params.id)
+        render marca as XML;
+    }
+
+
+
 
     def index() {
         redirect(action: "list", params: params)
@@ -63,8 +104,8 @@ class MarcaController {
         if (version != null) {
             if (marcaInstance.version > version) {
                 marcaInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'marca.label', default: 'Marca')] as Object[],
-                          "Another user has updated this Marca while you were editing")
+                        [message(code: 'marca.label', default: 'Marca')] as Object[],
+                        "Another user has updated this Marca while you were editing")
                 render(view: "edit", model: [marcaInstance: marcaInstance])
                 return
             }

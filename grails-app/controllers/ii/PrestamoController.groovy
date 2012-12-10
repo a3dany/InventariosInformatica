@@ -1,7 +1,7 @@
 package ii
 
-import org.springframework.dao.DataIntegrityViolationException
 import org.joda.time.LocalDateTime
+import org.springframework.dao.DataIntegrityViolationException
 
 class PrestamoController {
 
@@ -21,8 +21,16 @@ class PrestamoController {
         render(view: "listPrestamosAnteriores", model: [prestamoInstanceList: Prestamo.findAllByDevuelto(true), prestamoInstanceTotal: Prestamo.countByDevuelto(true)])
     }
 
+    def misPrestamos(Integer max) {
+        render(view: "listPrestamosAnteriores", model: [prestamoInstanceList: Prestamo.findAllBySolicitante(Usuario.findByUsername(sec.username())), prestamoInstanceTotal: Prestamo.countBySolicitante(Usuario.findByUsername(sec.username()))])
+    }
+
     def create() {
         [prestamoInstance: new Prestamo(params)]
+    }
+
+    def createWith() {
+        render(view: 'createWith', model: [activoInstance: Activo.findById(params.id)])
     }
 
     def save() {
@@ -77,8 +85,8 @@ class PrestamoController {
         if (version != null) {
             if (prestamoInstance.version > version) {
                 prestamoInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'prestamo.label', default: 'Prestamo')] as Object[],
-                          "Another user has updated this Prestamo while you were editing")
+                        [message(code: 'prestamo.label', default: 'Prestamo')] as Object[],
+                        "Another user has updated this Prestamo while you were editing")
                 render(view: "edit", model: [prestamoInstance: prestamoInstance])
                 return
             }

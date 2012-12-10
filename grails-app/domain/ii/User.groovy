@@ -2,7 +2,6 @@ package ii
 
 class User {
 
-
 	transient springSecurityService
 
 	String username

@@ -4,6 +4,15 @@
 <head>
     <meta name="layout" content="main">
     <title><g:message code="activo.activos"/></title>
+    <style type="text/css" media="screen">
+    #busqueda {
+        text-align: center;
+        margin: 1em;
+        margin-left: 17em;
+        margin-bottom: 0em;
+        width: 25em;
+    }
+    </style>
 </head>
 
 <body>
@@ -13,15 +22,12 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <sec:ifAnyGranted roles="ADMINISTRADOR,TECNICO">
-            <li><g:link class="create" action="create"><g:message code="activo.nuevoactivo"/></g:link></li>
-            <li><g:link class="list" action="listPedidos"><g:message code="activo.pedidos"/></g:link></li>
-            <li><g:link class="create" action="createPedido"><g:message code="activo.nuevopedido"/></g:link></li>
-        </sec:ifAnyGranted>
     </ul>
 </div>
+<input type="text" name="busqueda" id="busqueda" value="" placeholder="Ingrese una palabra"/>
 
 <div id="list-activo" class="content scaffold-list" role="main">
+
     <h1><g:message code="activo.activos"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
@@ -40,7 +46,7 @@
 
             <g:sortableColumn property="modelo" title="${message(code: 'activo.modelo.label')}"/>
 
-            <th><g:message code="activo.responsable.label"/></th>
+            <th>Acciones</th>
 
         </tr>
         </thead>
@@ -59,8 +65,13 @@
 
                 <td>${fieldValue(bean: activoInstance, field: "modelo")}</td>
 
-                <td><g:link action="show" controller="usuario"
-                            id="${activoInstance.responsable.id}">${activoInstance.responsable}</g:link></td>
+                <td>
+                    <g:link action="createWith" controller="prestamo" id="${activoInstance.id}">Prestar</g:link>
+                    |
+                    <g:link action="createWith" controller="cambioEstado" id="${activoInstance.id}">Cambiar estado</g:link>
+                    |
+                    <g:link action="createWith" controller="movimiento" id="${activoInstance.id}">Mover</g:link>
+                </td>
 
             </tr>
         </g:each>
@@ -70,6 +81,8 @@
     <div class="pagination">
         <g:paginate total="${activoInstanceTotal}"/>
     </div>
+
 </div>
+<g:javascript src="busqueda.js"></g:javascript>
 </body>
 </html>

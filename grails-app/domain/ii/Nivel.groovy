@@ -2,7 +2,6 @@ package ii
 
 class Nivel {
 
-
     String nombre
     String descripcion
 

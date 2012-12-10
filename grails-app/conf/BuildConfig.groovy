@@ -35,6 +35,12 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
         runtime: 'postgresql:postgresql-9.1-902.jdbc3'
         // runtime 'mysql:mysql-connector-java:5.1.20'
+
+        // Por error en renderPdf
+        //compile('org.apache.xmlgraphics:fop:0.93') {
+            //excludes([group: 'xml-apis', name: 'xmlParserAPIs'])
+        //}
+
     }
 
     plugins {

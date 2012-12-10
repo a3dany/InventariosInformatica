@@ -4,7 +4,6 @@ import org.joda.time.LocalDateTime
 
 class Prestamo {
 
-
     Activo item
     String detalleItem
     Usuario solicitante

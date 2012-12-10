@@ -1,5 +1,20 @@
-<%@ page import="ii.Role; ii.Usuario" %>
+<%@ page import="ii.UserRole; ii.Role; ii.Usuario" %>
 
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'nombres', 'error')} required">
+    <label for="nombres">
+        <g:message code="usuario.nombres.label"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="nombres" required="" value="${usuarioInstance?.nombres}"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'apellidos', 'error')} required">
+    <label for="apellidos">
+        <g:message code="usuario.apellidos.label"/>
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="apellidos" required="" value="${usuarioInstance?.apellidos}"/>
+</div>
 
 
 <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'username', 'error')} required">
@@ -18,21 +33,14 @@
     <g:textField name="password" required="" value="${usuarioInstance?.password}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'nombres', 'error')} required">
-    <label for="nombres">
-        <g:message code="usuario.nombres.label"/>
-        <span class="required-indicator">*</span>
+<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'ci', 'error')} ">
+    <label for="ci">
+        <g:message code="usuario.ci.label"/>
+
     </label>
-    <g:textField name="nombres" required="" value="${usuarioInstance?.nombres}"/>
+    <g:textField name="ci" value="${usuarioInstance?.ci}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'apellidos', 'error')} required">
-    <label for="apellidos">
-        <g:message code="usuario.apellidos.label"/>
-        <span class="required-indicator">*</span>
-    </label>
-    <g:textField name="apellidos" required="" value="${usuarioInstance?.apellidos}"/>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'cargo', 'error')} ">
     <label for="cargo">
@@ -43,52 +51,56 @@
               valueMessagePrefix="usuario.cargo" noSelection="['': '']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'ci', 'error')} ">
-    <label for="ci">
-        <g:message code="usuario.ci.label"/>
 
-    </label>
-    <g:textField name="ci" value="${usuarioInstance?.ci}"/>
-</div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'accountExpired', 'error')} ">
-    <label for="accountExpired">
-        <g:message code="usuario.accountExpired.label"/>
+<sec:ifAllGranted roles="ADMINISTRADOR">
 
-    </label>
-    <g:checkBox name="accountExpired" value="${usuarioInstance?.accountExpired}"/>
-</div>
+    <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'accountExpired', 'error')} ">
+        <label for="accountExpired">
+            <g:message code="usuario.accountExpired.label"/>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'accountLocked', 'error')} ">
-    <label for="accountLocked">
-        <g:message code="usuario.accountLocked.label"/>
+        </label>
+        <g:checkBox name="accountExpired" value="${usuarioInstance?.accountExpired}"/>
+    </div>
 
-    </label>
-    <g:checkBox name="accountLocked" value="${usuarioInstance?.accountLocked}"/>
-</div>
+    <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'accountLocked', 'error')} ">
+        <label for="accountLocked">
+            <g:message code="usuario.accountLocked.label"/>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'enabled', 'error')} ">
-    <label for="enabled">
-        <g:message code="usuario.enabled.label"/>
+        </label>
+        <g:checkBox name="accountLocked" value="${usuarioInstance?.accountLocked}"/>
+    </div>
 
-    </label>
-    <g:checkBox name="enabled" value="${usuarioInstance?.enabled}"/>
-</div>
+    <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'enabled', 'error')} ">
+        <label for="enabled">
+            <g:message code="usuario.enabled.label"/>
+        </label>
+        <g:checkBox name="enabled" value="${usuarioInstance?.enabled}" checked="true"/>
+    </div>
 
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'passwordExpired', 'error')} ">
-    <label for="passwordExpired">
-        <g:message code="usuario.passwordExpired.label"/>
+    <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'passwordExpired', 'error')} ">
+        <label for="passwordExpired">
+            <g:message code="usuario.passwordExpired.label"/>
 
-    </label>
-    <g:checkBox name="passwordExpired" value="${usuarioInstance?.passwordExpired}"/>
-</div>
+        </label>
+        <g:checkBox name="passwordExpired" value="${usuarioInstance?.passwordExpired}"/>
+    </div>
 
-<!-- ROLES -->
-<div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'item', 'error')} required">
-    <label for="rol">
-        <g:message code="usuario.rol.label" />
-        <span class="required-indicator">*</span>
-    </label>
-    <g:select id="rol" name="rol.id" from="${ii.Role.list()}" optionKey="id" required="required"  class="many-to-one"/>
-</div>
+    <!-- ROLES -->
+    <div class="fieldcontain ${hasErrors(bean: usuarioInstance, field: 'item', 'error')} required">
+        <label for="rol">
+            <g:message code="usuario.rol.label"/>
+            <span class="required-indicator">*</span>
+        </label>
+        <g:if test="${usuarioInstance.username && UserRole.countByUser(usuarioInstance) > 0}">
+            <g:select id="rol" name="rolId" from="${ii.Role.list()}"
+                      value="${UserRole.findByUser(usuarioInstance).role?.id}"
+                      optionKey="id" required="required" class="many-to-one"/>
+        </g:if>
+        <g:else>
+            <g:select id="rol" name="rolId" from="${ii.Role.list()}"
+                      optionKey="id" required="required" class="many-to-one"/>
+        </g:else>
+    </div>
 
+</sec:ifAllGranted>

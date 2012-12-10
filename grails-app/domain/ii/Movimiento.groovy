@@ -4,7 +4,6 @@ import org.joda.time.LocalDateTime
 
 class Movimiento {
 
-
     Activo item
     Ambiente origen
     Ambiente destino
@@ -14,7 +13,7 @@ class Movimiento {
 
     static constraints = {
         item()
-        origen()
+        origen(nullable: true)
         destino()
         descripcion(maxSize: 999999)
         responsable(nullable: true)

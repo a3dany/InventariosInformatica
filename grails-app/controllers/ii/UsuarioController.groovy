@@ -22,15 +22,13 @@ class UsuarioController {
     def save() {
         def usuarioInstance = new Usuario(params)
 
-        def rol = Role.findById(params.id)
-
-
-
         if (!usuarioInstance.save(flush: true)) {
+
             render(view: "create", model: [usuarioInstance: usuarioInstance])
             return
         }
-        UserRole.create(usuarioInstance, rol, true)
+        def tecnico = Role.findById(params.rolId)
+        UserRole.create(usuarioInstance, tecnico, true);
         flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuarioInstance.id])
         redirect(action: "show", id: usuarioInstance.id)
     }
@@ -68,8 +66,8 @@ class UsuarioController {
         if (version != null) {
             if (usuarioInstance.version > version) {
                 usuarioInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'usuario.label', default: 'Usuario')] as Object[],
-                          "Another user has updated this Usuario while you were editing")
+                        [message(code: 'usuario.label', default: 'Usuario')] as Object[],
+                        "Another user has updated this Usuario while you were editing")
                 render(view: "edit", model: [usuarioInstance: usuarioInstance])
                 return
             }
@@ -80,6 +78,20 @@ class UsuarioController {
         if (!usuarioInstance.save(flush: true)) {
             render(view: "edit", model: [usuarioInstance: usuarioInstance])
             return
+        }
+
+
+        if (params.rolId) {
+            // Borrar rol
+            def role = UserRole.findByUser(usuarioInstance)
+            if (role) {
+                role.delete(flush: true)
+                def nuevoRole = Role.findById(params.rolId)
+                UserRole.create(usuarioInstance, nuevoRole, true);
+            } else {
+                def nuevoRole = Role.findById(params.rolId)
+                UserRole.create(usuarioInstance, nuevoRole, true);
+            }
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuarioInstance.id])
@@ -95,6 +107,10 @@ class UsuarioController {
         }
 
         try {
+            def role = UserRole.findByUser(usuarioInstance)
+            if (role) {
+                role.delete(flush: true)
+            }
             usuarioInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'usuario.label', default: 'Usuario'), id])
             redirect(action: "list")
